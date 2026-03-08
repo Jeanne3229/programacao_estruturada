@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-#define MIN_QTD 2
-#define MAX_QTD 3
+#define MIN_QTD 4 // Quantidade minima de participantes
+#define MAX_QTD 20 // Quantidade Maxima de participantes
 #define MIN_IDADE 0
 #define MAX_IDADE 130
 
-double calcularMedia(int v[], int n);
+double calcularMedia(int v[], int n); 
 void imprimirMaiorIgualMedia(int v[], int n, double media);
 void preencherIdadesDigitacao(int v[], int n);
 int buscaSequencial(int v[], int n, int x);
