@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_QTD 5
+#define MAX_QTD 30
 int main(){
   double nota1[MAX_QTD], nota2[MAX_QTD], media[MAX_QTD]; //Definir as variaveis
   int i; //definir para usar no primeiro for
