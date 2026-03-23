@@ -2,34 +2,112 @@
 #include <stdlib.h>
 #define MIN_QTD 3
 #define MAX_QTD 50
+//primeiro inserir tamanho do vetor
 
-//Primeira a funcao para que o usuário insira o tamanho do vetor e adicione os valores nesse vetor.
+
 
 void insira_tamanho(int v[], int *tamanho) {
-  printf("Digite o tamanho do vetor que voce vai preencher (%d - %d): ", MIN_QTD, MAX_QTD);
-  scanf("%d", tamanho); 
-  while(*tamanho > MAX_QTD || *tamanho < MIN_QTD) {
-    printf("digite um tamanho disponivel, esse não está. Digite novamente (%d - %d): ", MIN_QTD, MAX_QTD);
-    scanf("%d", tamanho);
-    int i; }
-    for(i = 0; i < *tamanho; i++) {
-      printf("Digite valores para preencher o vetor de tamanho(%d): ", tamanho);
-      scanf("%d", &v[i]); } } 
-
-//Agora a inserção ordenada por meio do metodo insertion sort:
-
-void ordenar_vetor(int v[]; int tamanho) {
-  int i, anterior, atual;
-  for(i = 1; i < tamanho; i++) {
-    atual = v[i];
-    anterior = i - 1
-    while(anterior >= 0 && v[anterior] > atual) {
-      v[anterior + 1] = v[anterior]
-      anterior = anterior - 1; }
-  v[anterior + 1] = atual;
+    do {
+        printf("Digite o tamanho (%d-%d): ", MIN_QTD, MAX_QTD);
+        scanf("%d", tamanho);
+        if (*tamanho < MIN_QTD || *tamanho > MAX_QTD) //Caso o tamanho ultrapasse o valor minimo ou maximo imprimir opcao invalida 
+            printf("Invalido! (%d-%d)\n", MIN_QTD, MAX_QTD); }
+      while (*tamanho < MIN_QTD || *tamanho > MAX_QTD);
+    printf("Digite %d valores:\n", *tamanho); //digitar os valores para preencher o tamanho
+    for (int i = 0; i < *tamanho; i++) {
+        printf("v[%d]: ", i);
+        scanf("%d", &v[i]);
+    } }
 
 
 
+//METODO INSERTION SORT
+void ordenarVetor(int v[], int tamanho) {
+    for (int i = 1; i < tamanho; i++) {
+        int atual = v[i], anterior = i - 1;
+        while (anterior >= 0 && v[anterior] > atual) {
+            v[anterior + 1] = v[anterior];
+            anterior--;
+        }
+        v[anterior + 1] = atual;
+    }
+    printf("Vetor ordenado!\n");
+}
 
+int buscaBinaria(int v[], int n, int chave) {
+    int inicio = 0, fim = n - 1;
+    while (inicio <= fim) {
+        int meio = (inicio + fim) / 2;
+        if (v[meio] == chave) return meio;
+        if (v[meio] > chave) fim = meio - 1;
+        else inicio = meio + 1;
+    }
+    return -1;
+}
 
+//AGORA FUNCOES DO MENU FINAL
+void imprimirVetor(int v[], int tamanho) {
+    printf("Vetor[%d]: ", tamanho);
+    for (int i = 0; i < tamanho; i++) printf("%d ", v[i]);
+    printf("\n");
+}
 
+int removerElemento(int v[], int *tamanho, int valor) {
+    int pos = buscaBinaria(v, *tamanho, valor);
+    if (pos == -1) {
+        printf("Elemento %d não encontrado!\n", valor);
+        return 0;
+    }
+    for (int i = pos; i < *tamanho - 1; i++) v[i] = v[i + 1];
+    (*tamanho)--;
+    printf("Elemento %d removido!\n", valor);
+    return 1;
+}
+
+int inserirElemento(int v[], int *tamanho, int valor) {
+    if (*tamanho >= MAX_QTD) {
+        printf("Vetor cheio!\n");
+        return 0;
+    }
+    int pos = *tamanho;
+    for (int i = 0; i < *tamanho; i++) {
+        if (v[i] > valor) { pos = i; break; }
+    }
+    for (int i = *tamanho; i > pos; i--) v[i] = v[i - 1];
+    v[pos] = valor; (*tamanho)++;
+    printf("Elemento %d inserido!\n", valor);
+    return 1;
+}
+
+//MENU 
+void menu(int v[], int *tamanho) {
+    int opcao, valor;
+    do {
+        printf("\n======= MENU =======\n1-Imprimir\n2-Consultar\n3-Remover\n4-Inserir\n0-Sair\nOpção: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 1) imprimirVetor(v, *tamanho);
+        else if (opcao == 2) {
+            printf("Valor: "); scanf("%d", &valor);
+            printf("Posição: %d\n", buscaBinaria(v, *tamanho, valor));
+        }
+        else if (opcao == 3) {
+            printf("Remover: "); scanf("%d", &valor);
+            removerElemento(v, tamanho, valor);
+        }
+        else if (opcao == 4) {
+            printf("Inserir: "); scanf("%d", &valor);
+            inserirElemento(v, tamanho, valor);
+        }
+        else if (opcao == 0) printf("Saindo...\n");
+        else printf("Opção inválida!\n");
+    } while (opcao != 0);
+}
+
+int main() {
+    int vetor[MAX_QTD], tamanho;
+    insira_tamanho(vetor, &tamanho);
+    ordenarVetor(vetor, tamanho);
+    menu(vetor, &tamanho);
+    return 0;
+}
