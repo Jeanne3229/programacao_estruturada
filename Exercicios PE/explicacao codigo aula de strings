@@ -1,0 +1,111 @@
+// Inclui a biblioteca padrão de entrada e saída (printf, scanf, fgets)
+#include <stdio.h>
+// Inclui funções para manipulação de strings (strlen)
+#include <string.h>
+
+// Define uma constante chamada TAM_MSG com valor 50
+// Define o tamanho máximo das strings que vamos usar
+#define TAM_MSG 50
+
+// Protótipo da função lerStr (declaração antes de ser usada)
+// Diz ao compilador que essa função existe e será definida depois
+void lerStr(char str[], int tam);
+
+// Função principal - início do programa
+int main() {
+    // Declara uma string (array de caracteres) com capacidade para 50 caracteres
+    // Inicializa com o texto "Mensagem aos alunos!"
+    char mensagem[TAM_MSG] = "Mensagem aos alunos!";
+    
+    // Exibe a mensagem inicial na tela
+    // %s é substituído pelo conteúdo da variável mensagem
+    // \n pula uma linha (dois \n\n pulam duas linhas)
+    printf("Essa é a mensagem: %s\n\n", mensagem);
+    
+    // Exibe um pedido para o usuário digitar algo
+    printf("Digite uma mensagem (insegura): ");
+    
+    // Lê uma string do teclado usando scanf
+    // %[^\n] significa: "leia tudo até encontrar uma quebra de linha"
+    // INSECURO: se o usuário digitar mais de 49 caracteres, causa estouro de buffer
+    scanf("%[^\n]", mensagem);
+    
+    // Exibe a mensagem que foi digitada
+    printf("\nEssa é a mensagem digitada '%s'\n\n\n", mensagem);
+    
+    // Exibe um pedido para digitar uma nova mensagem
+    printf("Digite uma mensagem (segura): ");
+    
+    // Primeira chamada da função lerStr
+    // Serve APENAS para consumir (limpar) o caractere \n que ficou no buffer
+    // Isso evita que a leitura seguinte pule a entrada do usuário
+    lerStr(mensagem, TAM_MSG);
+    
+    // Segunda chamada da função lerStr
+    // Agora realmente lê a mensagem digitada pelo usuário de forma SEGURA
+    lerStr(mensagem, TAM_MSG);
+    
+    // Exibe a mensagem que foi digitada de forma segura
+    printf("\nEssa é a mensagem digitada '%s'\n\n", mensagem);
+    
+    // Retorna 0 indicando que o programa terminou com sucesso
+    return 0;
+}
+
+// Definição da função lerStr
+// Função para ler strings de forma SEGURA usando fgets
+// Parâmetros:
+//   str[]: array onde a string será armazenada
+//   tamMax: tamanho máximo permitido para a string (incluindo \0)
+void lerStr(char str[], int tamMax) {
+    // fgets lê no máximo (tamMax - 1) caracteres do teclado (stdin)
+    // É segura porque não permite estouro de buffer
+    // O fgets inclui automaticamente o caractere \n (quebra de linha) na string
+    fgets(str, tamMax, stdin);
+    
+    // Calcula o tamanho real da string lida (incluindo o \n)
+    int tam = strlen(str);
+    
+    // Verifica se a string não está vazia E se o último caractere é \n
+    if (tam > 0 && str[tam - 1] == '\n') {
+        // Substitui o \n por \0 (terminador nulo)
+        // Isso remove a quebra de linha da string
+        str[tam - 1] = '\0';
+    }
+}
+
+// Definição da função meuStrLen
+// Versão personalizada da função strlen (string length)
+// Conta quantos caracteres existem em uma string até encontrar \0
+// Parâmetro: str[] - a string que será contada
+// Retorna: o número de caracteres da string
+int meuStrLen(char str[]) {
+    int tam = 0;  // Inicia o contador com zero
+    
+    // Enquanto não encontrar o terminador nulo \0
+    while (str[tam] != '\0') {
+        tam += 1;  // Incrementa o contador
+    }
+    
+    return tam;  // Retorna o tamanho encontrado
+}
+
+// Definição da função meuStrCpy
+// Versão personalizada da função strcpy (string copy)
+// Copia o conteúdo de uma string para outra
+// Parâmetros:
+//   strDest[]: string de destino (onde será copiado)
+//   strOrig[]: string de origem (de onde será copiado)
+void meuStrCpy(char strDest[], char strOrig[]) {
+    // Calcula o tamanho da string de origem usando a função meuStrLen
+    int tam = meuStrLen(strOrig);
+    
+    // Copia caractere por caractere da origem para o destino
+    for (int i = 0; i < tam; i += 1) {
+        strDest[i] = strOrig[i];  // Copia cada caractere
+    }
+    
+    // Adiciona o terminador nulo no final da string de destino
+    // Isso é essencial para que a string seja reconhecida corretamente
+    strDest[tam] = '\0';
+}
