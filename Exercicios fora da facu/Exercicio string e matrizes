@@ -126,6 +126,115 @@ int main()
     contar(minhapalavra, MAX);
     return 0;
 }
+--------------------------------------------------------------------------------------------
+
+EXERCÍCIO 3 - Transformando em Título (Médio)
+Agora você vai implementar a função transformarTitulo que:
+1.	Recebe uma string
+2.	Transforma a primeira letra de cada palavra em maiúscula
+3.	Transforma as demais letras em minúscula
+Exemplo:
+text
+Entrada: "eu AMO programar EM C"
+Saída:   "Eu Amo Programar Em C"
+Dica: Você pode usar a função maiuscula e criar uma minuscula (caractere + 32)
+________________________________________
+
+RESPOSTA SEM A BIBLIOTECA
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+// Função para contar caracteres
+int meuStrLen(char str[]) {
+    int tam = 0;
+    while(str[tam] != '\0') {
+        tam++;
+    }
+    return tam;
+}
+
+// Função para verificar se é minúscula
+int ehMinuscula(char caractere) {
+    return caractere >= 'a' && caractere <= 'z';
+}
+
+// Função para verificar se é maiúscula
+int ehMaiuscula(char caractere) {
+    return caractere >= 'A' && caractere <= 'Z';
+}
+
+// Função para converter minúscula para maiúscula
+char maiuscula(char caractere) {
+    if (ehMinuscula(caractere)) {
+        return caractere - 32;  // 'a' (97) - 32 = 'A' (65)
+    }
+    return caractere;
+}
+
+// Função para transformar primeira letra de cada palavra em maiúscula
+void transformarMaiusculaTodasPrimeirasLetras(char str[]) {
+    int tam = meuStrLen(str);
+
+    // Remove o \n do final
+    if (tam > 0 && str[tam - 1] == '\n') {
+        str[tam - 1] = '\0';
+        tam--;  // ajusta o tamanho
+    }
+
+    // Percorre toda a string
+    for (int i = 0; i < tam; i++) {
+        // Se for minúscula E (é primeiro caractere OU tem espaço antes)
+        if (ehMinuscula(str[i]) && (i == 0 || str[i - 1] == ' ')) {
+            str[i] = maiuscula(str[i]);  // transforma em maiúscula
+        }
+    }
+}
+
+int main() {
+    char minhapalavra[MAX];
+
+    printf("Digite uma frase para ver em versão de filme: ");
+    fgets(minhapalavra, MAX, stdin);
+
+    transformarMaiusculaTodasPrimeirasLetras(minhapalavra);
+
+    printf("\nFrase transformada: %s\n", minhapalavra);
+
+    return 0;
+}
+----------------------------------------------------------------------------------------
+
+EXERCÍCIO 4 - Matriz de Números (Fácil)
+Crie um programa que:
+1.	Defina uma matriz 3x3 (3 linhas, 3 colunas)
+2.	Preencha a matriz com números digitados pelo usuário
+3.	Exiba a matriz formatada como uma tabela
+Exemplo de saída:
+text
+Digite o valor de m[1][1]: 1
+Digite o valor de m[1][2]: 2
+
+RESPOSTA: 
+
+void preencherMatriz(int m[][COL], int lin, int col) {
+    for (int i = 0; i < lin; i += 1) {
+        for (int j = 0; j < col; j += 1) {
+            printf("Digite o valor de m[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &m[i][j]);
+        }
+    }
+}
+
+void imprimirMatriz(int m[][COL], int lin, int col) {
+    for (int i = 0; i < lin; i += 1) {
+        for (int j = 0; j < col; j += 1) {
+            printf("%d\t", m[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 
 
