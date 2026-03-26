@@ -1,0 +1,134 @@
+Crie um programa que:
+1.	Declare uma string chamada frase com capacidade para 100 caracteres
+2.	Peça para o usuário digitar uma frase (use fgets de forma segura)
+3.	Conte quantos caracteres a frase tem (usando a função meuStrLen que você vai implementar)
+4.	Exiba o resultado: "A frase tem X caracteres"
+Exemplo de saída:
+text
+Digite uma frase: Eu amo programar
+A frase tem 16 caracteres
+--------------------------------------------------------------------------------------------------------
+//RESPOSTA COM A BIBLIOTECA STR
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 100 //maximo de caracteres
+
+void contarFrase(char v[], int tamanho) {
+  printf("Digite sua frase ou palavra: ");
+  fgets(v, tamanho, stdin);
+  int tamanho1 = strlen(v);
+  if(tamanho1 > 0 && v[tamanho1 - 1] == '\n') {
+    tamanho1 = tamanho1 - 1; }
+printf("A frase tem %d caracteres"); //fora do if 
+}
+
+int main() {
+  char meuTexto[MAX];
+  contarFrase(meuTexto, MAX);
+
+  return 0;
+}
+
+//RESPOSTA SEM A BIBLIOTECA STR 
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+int meuStrLen(char str[]) {
+    int tam = 0;
+    while(str[tam] != '\0') {
+        tam += 1;
+    }
+    return tam;
+}
+void contar(char v[], int tamanho) {
+    printf("Digite sua frase: ");
+    fgets(v, tamanho, stdin);
+    int tamanho1 = meuStrLen(v);
+    if(tamanho1 > 0 && v[tamanho1 - 1] == '\n') {
+        tamanho1--;
+    }
+    printf("A quantidade de caracteres e: %d", tamanho1);
+}
+int main()
+{
+    char minhapalavra[MAX];
+    contar(minhapalavra, MAX);
+    return 0;
+}
+
+--------------------------------------------------------------------------
+EXERCÍCIO 2 - Contando Letras (Médio)
+Com base no programa do Exercício 1, adicione funções para:
+1.	Contar quantas letras minúsculas existem na frase (use a função ehMinuscula)
+2.	Contar quantas letras maiúsculas existem na frase (crie a função ehMaiuscula)
+3.	Contar quantos espaços existem na frase
+4.	Exibir todos os resultados
+Exemplo de saída:
+text
+Digite uma frase: Eu Amo Programar em C
+Letras minúsculas: 12
+Letras maiúsculas: 4
+
+//RESPOSTA SEM A BIBLIOTECA DE PREFERENCIA
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+//primeiro vai contar o tamanho da string
+int meuStrLen(char str[]) {
+    int tam = 0;
+    while(str[tam] != '\0') {
+        tam += 1;
+    }
+    return tam;
+}
+
+//vai checar as minusculas
+int ehMinuscula(char caractere) {
+    return caractere >= 'a' && caractere <= 'z';
+}
+//vai checar as maiusculas
+int ehMaiuscula(char caractere) {
+    return caractere >= 'A' && caractere <= 'Z';
+}
+//funcao final juntando todas
+void contar(char v[], int tamanho) {
+    printf("Digite sua frase: ");
+    fgets(v, tamanho, stdin);
+    int tamanho1 = meuStrLen(v);
+    if(tamanho1 > 0 && v[tamanho1 - 1] == '\n') { //aqui ele vai tirar o enter da contagem do tamanho
+        tamanho1--;
+    }
+    int conta_espaco = 0; //contagem de cada variavel
+    int conta_Maiuscula = 0;
+    int conta_Minuscula = 0;
+    for(int i = 0; i < tamanho1; i++) {
+        if(ehMinuscula(v[i])){
+            conta_Minuscula += 1;
+        }
+        if(ehMaiuscula(v[i])) {
+            conta_Maiuscula += 1;
+        }
+        if (v[i] == ' ') {
+            conta_espaco += 1;
+        }
+    }
+    printf("\n\nLetras Minusculas: %d", conta_Minuscula); //prints fora do for
+    printf("\nLetras Maiusculas: %d", conta_Maiuscula);
+    printf("\n\nEspacos: %d", conta_espaco);
+}
+int main()
+{
+    char minhapalavra[MAX];
+    contar(minhapalavra, MAX);
+    return 0;
+}
+
+
+
+
+
+
