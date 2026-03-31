@@ -1,0 +1,50 @@
+#Crie uma função que receba como parametro uma matriz quadrada e modifique a própria matriz para que ela seja a matriz transposta 
+
+#include <stdio.h>
+#include <stdlib.h>
+#define COL 3
+#define LIN 3
+
+void preencherMatriz(int m[][COL], int lin, int col) {
+    for (int i = 0; i < lin; i += 1) {
+        for (int j = 0; j < col; j += 1) {
+            printf("Digite o valor de m[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &m[i][j]);
+        }
+    }
+}
+
+
+void imprimirMatriz(int m[][COL], int lin, int col) {
+    for (int i = 0; i < lin; i += 1) {
+        for (int j = 0; j < col; j += 1) {
+            printf("%d\t", m[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void transposta(int m[][COL], int lin, int col) {
+    int aux;
+    for(int i = 0; i < lin; i++) {
+        for(int j = i + 1; j < col; j++) {
+            aux = m[i][j];
+            m[i][j] = m[j][i];
+            m[j][i] = aux;
+        }
+    }
+}
+int main() {
+    int minha_m[LIN][COL];
+    preencherMatriz(minha_m,LIN,COL);
+    printf("\nMatriz A SEM SER TRANSPOSTA:\n ");
+    imprimirMatriz(minha_m,LIN,COL);
+    printf("\n");
+    transposta(minha_m,LIN, COL);
+    printf("\nAgora ela transposta: \n");
+    imprimirMatriz(minha_m,LIN,COL);
+
+
+    return 0;
+
+}
