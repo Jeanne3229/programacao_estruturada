@@ -1,1 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define COL 3
+#define LIN 4
 
+void preencher_matriz(int m[][COL], int lin, int col) {
+  for(int i = 0; i < lin; i++) {
+    for(int j = 0; j < col; j++) {
+      printf("Preencha o valor respectivo da posicao [%d][%d]: ", i + 1, j + 1);
+      scanf("%d",&m[i][j]); } } }
+
+void imprimirM(int m[][COL], int lin, int col) {
+  for(int i = 0; i < lin; i++) {
+    for(int j = 0; j < col; j++) {
+      printf("%d",m[i][j]); } } }
+
+void somaM(int m1[][COL], int m2[][COL], int sm[][COL], int lin, int col) {
+  for(int i = 0; i < lin; i++) {
+    for(int j = 0; j < col; j++) {
+      sm[i][j] = m1[i][j] + m2[i][j]; } } }
+
+
+int main() {
+  int minha_m1[LIN][COL];
+  int minha_m2[LIN][COL];
+  int minha_soma[LIN][COL];
+  preencher_matriz(minha_m1,LIN, COL);
+  printf("\nMATRIZ A:\n")
+  imprimirM(minha_m1,LIN,COL);
+  preencher_matriz(minha_m2,LIN,COL);
+  printf("\nMATRIZ B:\n");
+  imprimirM(minha_m2,LIN,COL);
+  printf("\nSoma das Matrizes: ");
+  somaM(minha_m1,minha_m2,LIN, COL, minha_soma);
+  imprimirM(minha_soma,LIN,COL);
+
+  return 0; }
