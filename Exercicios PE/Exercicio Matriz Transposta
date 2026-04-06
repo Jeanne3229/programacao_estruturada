@@ -27,7 +27,7 @@ void imprimirMatriz(int m[][COL], int lin, int col) {
 void transposta(int m[][COL], int lin, int col) {
     int aux;
     for(int i = 0; i < lin; i++) {
-        for(int j = i + 1; j < col; j++) {
+        for(int j = i + 1; j < col; j++) { //nao mexe na diagonal 
             aux = m[i][j];
             m[i][j] = m[j][i];
             m[j][i] = aux;
