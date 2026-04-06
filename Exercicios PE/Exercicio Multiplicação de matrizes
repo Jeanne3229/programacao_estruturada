@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LINA 2
+#define COLA 3
+#define LINB 3
+#define COLB 3
+//pra multiplicar as matrizes eu preciso de um for pra soma das multiplicacoes de linhas e colunas 
+//matriz inversa, operacoes com matrizes
+
+
+
+void preencherMatriz(int m[][COL], int lin, int col) {
+    for (int i = 0; i < lin; i += 1) {
+        for (int j = 0; j < col; j += 1) {
+            printf("Digite o valor de m[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &m[i][j]);
+        }
+    }
+}
+
+void imprimirMatriz(int m[][COL], int lin, int col) {
+    for (int i = 0; i < lin; i += 1) {
+        for (int j = 0; j < col; j += 1) {
+            printf("%d\t", m[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
+
+void multiplicacao(int mA[][COL], int linA, int colA, int mB[][COL], int linB, int colB, int mult[][COL]) { //nao precisa do tamanho pq ja tem linhas e colunas definindo
+  if(col1 != lin2) {
+    printf("Não podem ser multiplicadas!\n");
+    return; }
+  for(int i = 0; i < linA; i++) {
+    for(int j = 0; j < colB; j++) {
+      mult[i][j] = 0;
+      for( int k = 0; k < colA; k++) { //pode ser qualquer uma das duas colunas
+        mult[i][j] += a[i][k] * b[k][j]; //linha i coluna j, k varia igual a cada multiplicacao 
+        } } } } 
+
+
+int main() {
+    int minha_m[LIN][COL];
+    preencherMatriz(minha_m,LIN,COL);
+    printf("\nMatriz A SEM SER TRANSPOSTA:\n ");
+    imprimirMatriz(minha_m,LIN,COL);
+    printf("\n");
+    multiplicacao(minha_m,LIN, COL);
+    printf("\nAgora ela transposta: \n");
+    imprimirMatriz(minha_m,LIN,COL);
+
+
+    return 0;
+
+}
+
+
