@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Aula 3 - ponteiro como parametro para uma funcao ou procedimento
+
+
+void imprimir(int *val) {//AQUI O ENDERECO DE IDADE ENTRA
+    printf("\n\tidade 1: %d\n", *val); //AQUI É PRA ONDE O ENDEREÇO DE IDADE APONTA (19)
+    *val = 10; //AQUI NOS ESTAMOS DEFININDO UM NOVO VALOR PRA ONDE O ENDEREÇO DE IDADE APONTA, OU SEJA VAI PASSAR DE 19 PRA 10
+    printf("\n\tidade 2: %d\n", *val); //AQUI ELA VAI IMPRIMIR 10 Q É PRA ONDE ELA APONTA AGORA.
+}
+
+//Ou seja, cada parte da função é um procedimento diferente
+
+
+
+int main()
+{
+    int idade = 19; //esta variavel so existe nessa funcao (int main) por isso e necessario chama-la
+    imprimir(&idade);
+    printf("\n\tIdade em main: %d\n", idade); //aqui ela é 10 que e o novo valor de idade, se nao tivesse a funcao imprimir...
+    //anteriormente, seria impresso 19 mas quando a gente puxa a funcao imprimir ela altera o valor de idade.
+    return 0;
+}
