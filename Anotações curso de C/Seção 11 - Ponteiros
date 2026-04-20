@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Aula 01 - Ponteiros: O que são e como criar?
+
+
+int main()
+{
+    int idade = 19; //Cada variavel possui um endereco unico de memoria
+    char sexo = 'F'; //Todo endereço de memoria e sequencial de forma crescente
+
+    int *pi = &idade;
+    char *ps = &sexo;
+
+    printf("Endereco da variavel idade: %p \tidade: %d", &idade, idade); //%p vem de ponteiro ou pointer, para obter o endereco coloca o &
+    printf("\nEndereco da variavel sexo: %p \tSexo: %c", &sexo, sexo);//sexo e o conteudo que estou guardando nessa regiao de memoria
+    printf("\n\tEndereco de pi: %p\tConteudo de pi: %p\tConteudo apontado por pi: %d", &pi, pi, *pi);
+    printf("\n\tEndereco de ps: %p\tConteudo de ps: %p\n", &ps, ps);
+
+    //RESUMO: pi esta guardando o endereço da variavel idade (dentro, no seu conteudo) mas pi tbm possui endereço proprio.
+    //ja *pi ele puxa o valor que pi esta apontando, ou seja, 19.
+
+
+
+    return 0;
+}
