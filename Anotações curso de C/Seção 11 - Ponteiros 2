@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    //Qual o tamanho de um ponteiro na linguagem C?
+    int idade = 19;
+    char sexo = 'f';
+    float altura;
+    double at;
+
+    int *pi = &idade;
+    char *ps = &sexo;
+    float *paf = &altura;
+    double *pat = &at;
+
+    printf("\n\tchar: %d\n", sizeof sexo); //sizeoff diz o tamanho do tipo da variavel.
+    printf("\n\tint: %d\n", sizeof idade);
+    printf("\n\tfloat: %d\n", sizeof altura);
+    printf("\n\tdouble: %d\n", sizeof at);
+
+
+    printf("\n\tChar Sexo Ponteiro: %d\n", sizeof ps);
+    printf("\n\tint ponteiro: %d\n", sizeof pi);
+    printf("\n\tfloat ponteiro: %d\n", sizeof paf);
+    printf("\n\tdouble ponteiro: %d\n", sizeof pat);
+
+
+    return 0;
+}
