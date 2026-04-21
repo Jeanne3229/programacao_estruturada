@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#Alterar valor usando ponteiro: Crie uma váriavel, use um ponteiro para mudar o valor dela pra 20 e imprima o valor final.
+
+
+  
 
 int main () {
-  
-  
-  
-  
-  
-  
-  
+  int valor = 5; //defino um valor
+  int *pv = &valor; //crio um ponteiro guardando seu endereco em *pv
+  *pv = 20; //pego o valor que pv aponta e transformo em 20
+  printf("O novo valor de valor e: %d", *pv);
+
 
 return 0; }
