@@ -1,0 +1,16 @@
+#include <stdio.h> 
+#include <stdlib.h>
+
+#Crie uma função que recebe um ponteiro pra inteiro e dobra o valor da váriavel
+
+void dobrar(int *valor) {
+  *pv = (2 * (*pv));
+  printf("X = %d", *pv);
+}
+
+int main() {
+  int n = 10;
+  int *pv = &n;
+  dobrar(pv);
+
+  return 0; }
