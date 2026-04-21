@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Crie uma fun~ção que receba um ponteiro para inteiro e soma 1 no valor
+
+void incrementador(int *n) {
+  *n = ((*n) + 1);
+  printf("X = %d", *n);
+}
+
+
+//Quando a gente dobra ou incrementa o valor, o novo valor sera aquele que voce puxou na função. 
+
+int main() {
+  int valor = 2;
+  int *pv = &valor;
+  incrementador(pv);
+  
+
+
+
+
+
+
+
+
+  return 0; }
