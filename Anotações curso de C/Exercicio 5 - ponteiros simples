@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Faça uma função que troca os valores de duas váriaveis
+
+void troca(int *n1, int *n2) {
+    int temp = *n1; //estou guardando O VALOR DE N1, se  agente colocar *temp eu vou ta guardando o NEDEREÇO
+    *n1 = *n2;
+    *n2 = temp;
+    printf("n1 novo: %d, n2 novo: %d\n", *n1, *n2);
+}
+
+int main() {
+    int n1 = 4;
+    int n2 = 8;
+    int *pn1 = &n1;
+    int *pn2 = &n2;
+    troca(pn1, pn2);
+
+
+
+    return 0;
+}
