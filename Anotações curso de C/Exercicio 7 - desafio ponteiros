@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Crie uma funcao que receba dois parametros, recebe um terceiro parametro por ponteiro e guarda a soma nesse ponteiro
+
+void soma(int n1, int n2, int *resultado) {
+  *resultado = n1 + n2;
+  printf("O resultado sera: %d\n", *resultado);
+}
+
+
+
+
+
+int main() {
+  int a = 2;
+  int b = 4;
+  int r;
+  soma(a, b, &r);
+  
+
+
+return 0; }
+
+
+
+
+
+ 
