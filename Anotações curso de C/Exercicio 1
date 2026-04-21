@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Crie um programa que declare uma váriavel, crie um ponteiro pra ela e mostre o valor de x, o endereço de x e o valor usado no ponteiro.
+
+int main() {
+int numero = 5; //Aqui eu estou definindo a variavel 5, que seria x
+int *pn = &numero; //aqui eu crio um ponteiro e digo que ele esta apontando para o endereco de x 
+printf("O valor de x e: %d", numero); //aqui eu printo o x
+printf("\nO valor do endereço de x e: %p", &numero); //aqui eu estou printando o endereco de x 
+printf("\nO valor usado no ponteiro e: %d", *pn); //aqui eu estou printando para onde pn aponta que seria o valor x
+
+
+
+
+
+
+
+  return 0; }
