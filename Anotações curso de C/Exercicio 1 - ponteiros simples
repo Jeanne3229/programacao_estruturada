@@ -18,4 +18,8 @@ printf("\nO valor usado no ponteiro e: %d", *pn); //aqui eu estou printando para
 //pn --> endereco --> %p
 
 
+//pn e um ponteiro, ele guarda um endereco
+//*pn e o valor que esta naquele endereco
+
+
   return 0; }
