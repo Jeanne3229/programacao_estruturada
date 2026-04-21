@@ -12,8 +12,10 @@ printf("\nO valor usado no ponteiro e: %d", *pn); //aqui eu estou printando para
 
 
 
-
-
+//Numero --> valor(int) --> %d
+//*pn --> valor(int) --> %d
+//&numero --> endereco --> %p
+//pn --> endereco --> %p
 
 
   return 0; }
