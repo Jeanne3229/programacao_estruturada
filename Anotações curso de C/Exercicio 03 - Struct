@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+//Definição da Estrutura:
+//Defina uma struct chamada Produto utilizando typedef.
+//A estrutura deve conter os seguintes campos:
+//descricao: um array de caracteres (string) para o nome do produto.
+//codigo: um número inteiro para identificação.
+//preco: um valor de ponto flutuante (float) para o custo unitário.
+//Implementação no main:
+//Declare uma variável do tipo Produto.
+//Atribua valores aos campos da estrutura:
+//Para o campo descricao, utilize a função strcpy (da biblioteca <string.h>).
+//Para os campos codigo e preco, utilize atribuições diretas.
+//Saída de Dados:
+//Exiba as informações do produto na tela utilizando o printf.Formate o preço para exibir apenas duas casas decimais (ex: R$ 10.50).
+
+typedef struct {
+    char descricao[200];
+    int codigo;
+    double preco;
+}Produto;
+
+
+int main(){
+    Produto produto;
+    strcpy(produto.descricao, "Aquele pao quentinho");
+    produto.codigo = 1;
+    produto.preco = 8.00;
+
+    printf("Informacoes do produto: ");
+    printf("\nDescricao do produto: %s\nCodigo do produto: %d\nPreco do produto: %lf\n", produto.descricao, produto.codigo, produto.preco);
+
+
+
+    return 0;}
