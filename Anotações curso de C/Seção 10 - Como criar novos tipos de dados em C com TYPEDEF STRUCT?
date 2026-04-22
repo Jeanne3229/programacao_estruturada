@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//Como criar novos tipos de dados em C com typedef struct ?
+//Tipos primitivos: fornecidos pela linguagem
+//Struct e o elemento que utilizamos na linguagem c para criar novos tipos de dados
+struct Data{ //Passo a passo: struct, o nome desse tipo e entre as chaves informo quais os campos primitivos que ele vai ter
+    int dia, mes, ano;
+};
+
+struct Arquivo{
+    char nome[100]; //dois campos
+    int tamanho;
+
+
+
+
+};
+
+
+int main()
+{
+    struct Data data;
+    struct Arquivo arquivo;
+    //Struct Data é o nosso tipo de dado e data é a variavel q eu criei pra usar esse tipo
+    int dia;
+    dia = 10; //Salvei nessa variavel o numero 10
+    data.dia = 20; //para acessar ela vc vai colocar o nome da variavel. o que voce quer acessar no que foi criado anteriormente
+    data.mes = 3;
+    data.ano = 2026;
+
+    printf("Data: %d/%d/%d\n", data.dia, data.mes, data.ano);
+
+    strcpy(arquivo.nome, "teste.txt"); //strcpy esta copiando diretamente pra colocar em arquivo nome
+    arquivo.tamanho = 350;
+    printf("\nArquivo:\nNome: %s\nTamanho: %d\n", arquivo.nome, arquivo.tamanho);
+
+
+
+
+
+    return 0;
+}
