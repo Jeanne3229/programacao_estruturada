@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//Como criar novos tipos de dados em C com typedef struct ?
+//Tipos primitivos: fornecidos pela linguagem
+//Struct e o elemento que utilizamos na linguagem c para criar novos tipos de dados
+
+
+typedef struct{
+    int dia, mes, ano;
+}Data;
+
+typedef struct{
+    char nome[100]; //dois campos
+    int tamanho;
+
+
+
+
+}Arquivo;
+
+
+
+
+int main()
+{
+    Data data;
+    Arquivo arquivo;
+
+    printf("Digite uma data com dia/mes/ano: ");
+    scanf("%d %d %d", &data.dia, &data.mes, &data.ano);
+
+    printf("Data: %d/%d/%d\n", data.dia, data.mes, data.ano);
+    getchar(); //remover o enter
+    printf("\nDigite o nome e o tamanho do arquivo: ");
+    fgets(arquivo.nome, 100, stdin);
+    printf("\n");
+    scanf(" %d", &arquivo.tamanho);
+
+
+    printf("\nInformacoes Arquivo:\nNome: %s\nTamanho: %d\n", arquivo.nome, arquivo.tamanho);
+
+
+
+
+
+    return 0;
+}
