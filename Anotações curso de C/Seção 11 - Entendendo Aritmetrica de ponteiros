@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//funcao para imprimir um vetor usando aritmetrica de ponteiros
+
+void imprimir(int *n, int tamanho) {
+    printf("\n\t");
+    for(int i = 0; i < tamanho; i++) {
+        printf("%d ", *(n + i)); //i fala em relação ao indice
+    }
+}
+
+int main() { //Entendendo aritmética de ponteiros com vetor
+    int v[5] = {10,24,32,46,25};
+    //printf("\n\t0 = %d", *v); //*v para acessar o primeiro valor do indice 0 do vetor
+    //printf("\n\t1 = %d", *(v + 1)); //Se fizermos apenas *v + 1, nos vamos estar somando o inicial (10) + 1, e nao acessando o 2o indice
+    //printf("\n\t2 = %d", *(v + 2)); //colocamos parenteses para dar prioridade a soma, e nao ao *
+    //printf("\n\t3 = %d", *(v + 3));
+
+    imprimir(v, 5);
+
+    //O contador começa em 0 dos indices pois nos contamos do endereco do inicio do vetor mais 0, dps mais um, depois mais dois
+    //vet ja é o nosso endereco inicial, se fosse vet + 1, começaria em 24
+
+
+    return 0;
+}
