@@ -5,24 +5,28 @@
 //Como criar novos tipos de dados em C com typedef struct ?
 //Tipos primitivos: fornecidos pela linguagem
 //Struct e o elemento que utilizamos na linguagem c para criar novos tipos de dados
-struct Data{ //Passo a passo: struct, o nome desse tipo e entre as chaves informo quais os campos primitivos que ele vai ter
-    int dia, mes, ano;
-};
 
-struct Arquivo{
+
+typedef struct{ //Passo a passo: struct, o nome desse tipo e entre as chaves informo quais os campos primitivos que ele vai ter
+    int dia, mes, ano;
+}Data;
+
+typedef struct{
     char nome[100]; //dois campos
     int tamanho;
 
 
 
 
-};
+}Arquivo;
+
+//typedef serve pra renomear sem vc precisar ficar botando struct no int main (ele renomeia a struct
 
 
 int main()
 {
-    struct Data data;
-    struct Arquivo arquivo;
+    Data data;
+    Arquivo arquivo;
     //Struct Data é o nosso tipo de dado e data é a variavel q eu criei pra usar esse tipo
     int dia;
     dia = 10; //Salvei nessa variavel o numero 10
@@ -42,3 +46,4 @@ int main()
 
     return 0;
 }
+
