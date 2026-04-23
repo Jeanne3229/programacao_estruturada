@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Aula 06 - Existe ponteiro para ponteiro?
+
+
+int main()
+{
+    int A = 50;
+    int *B;
+    B = &A; //Nao posso atribuir um valor inteiro (tipo 50 ou 100) pois ela e um ponteiro, ou seja apenas um endereco.
+    int **C; //Aqui nos estamos criando um ponteiro para ponteiro
+    C = &B;
+
+    printf("\n\tEndereco de A: %p\tConteudo de A: %d\n", &A, A);
+    printf("\n\tEndereco da nossa variavel B: %p\tConteudo de B: %p\tConteudo apontado por B: %d\n",&B, B, *B);
+    printf("\n\tEndereco de C: %p\tConteudo de C: %p\tConteudo apontado por C: %d", &C, C, **C);
+
+
+    return 0;
+}
