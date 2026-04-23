@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Aula 03 - Seção 10: Posso usar uma struct dentro de outra struct?
+
+typedef struct{
+    int dia, mes, ano;
+}Data;
+
+typedef struct{
+    char nome[100]; //dois campos
+    int tamanho;
+    Data criacao;
+    Data edicao;
+
+}Arquivo;
+
+int main()
+{
+    Data data;
+    Arquivo arquivo;
+    printf("Digite uma data com dia/mes/ano: ");
+    scanf("%d %d %d", &data.dia, &data.mes, &data.ano);
+    printf("Data: %d/%d/%d\n", data.dia, data.mes, data.ano);
+    getchar(); //remover o enter
+    printf("\nDigite o nome e o tamanho do arquivo: ");
+    fgets(arquivo.nome, 100, stdin);
+    arquivo.tamanho = 47;
+    arquivo.criacao.dia = 17;//Acessando arquivo, o campo da variavel arquivo e o campo dia
+    arquivo.criacao.mes = 3;
+    arquivo.criacao.ano = 2026;
+    arquivo.edicao.dia = 30;
+    arquivo.edicao.mes = 4;
+    arquivo.edicao.ano = 2027;
+    printf("\n");
+    scanf(" %d", &arquivo.tamanho);
+
+    printf("\nInformacoes Arquivo:\nNome: %s\nTamanho: %d\n", arquivo.nome, arquivo.tamanho);
+    printf("\nData de criacao: %d/%d/%d", arquivo.criacao.dia, arquivo.criacao.mes, arquivo.criacao.ano);
+    printf("\nData de edicao: %d/%d/%d\n", arquivo.edicao.dia, arquivo.edicao.mes, arquivo.edicao.ano);
+
+
+
+
+    return 0;
+}
