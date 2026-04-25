@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 10
+/*Crie um programa que contenha um array de float contendo 10 elementos. Imprima o
+endereco de cada posicao desse array.*/
+
+void solucao(double *n1, int tamanho) {
+    for(int i = 0; i < tamanho; i++) {
+        printf("O endereco de %lf e: %p\n", n1[i], &n1[i]);
+    }
+}
+
+
+int main()
+{
+    double vet[MAX] = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.10};
+    double *pv = vet;
+    int tamanho = MAX;
+    solucao(pv, tamanho);
+
+
+
+    return 0;
+}
