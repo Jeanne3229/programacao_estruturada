@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Escreva um programa que contenha duas variaveis inteiras e leia elas do teclasdo. Compare seus enderecos e exiba o maior endereço
+
+void maior(int *n1, int *n2) {
+    printf("Digite o valor de n1: ");
+    scanf("%d", n1);
+    printf("\nDigite o valor de n2: ");
+    scanf("%d", n2);
+    printf("\nEndereco de n1: %p", n1);
+    printf("\nEndereco de n2: %p", n2);
+    if(n1 > n2) {
+        printf("\nO endereco de n1 e maior que n2");
+    }
+    else{
+        printf("\no endereco de n2 e maior que n1\n");
+    }
+
+
+
+}
+
+
+
+int main()
+{
+   int x1 = 40;
+   int x2 = 20;
+   int *px1 = &x1;
+   int *px2 = &x2;
+   maior(px1,px2);
+
+
+
+    return 0;
+}
