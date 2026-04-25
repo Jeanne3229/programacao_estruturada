@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+// Faca um programa que leia 2 valores inteiros e chame uma funcao que receba estas
+//2 variaveis e troque o seu conteudo, ou seja, esta funcao  e chamada passando duas
+//variaveis A e B por exemplo e, apos a execucao da funcao, A conter a o valor de B e B
+//ter a o valor de A
+
+void troca(int *n1, int *n2){
+    printf("O valor atual de A e: %d", *n1);
+    printf("\nO valor atual de B e: %d", *n2);
+    int temp = *n1;
+    *n1 = *n2;
+    *n2 = temp;
+}
+
+
+int main()
+{
+    int n1 = 70;
+    int n2 = 80;
+    int *psn1 = &n1;
+    int *psn2 = &n2;
+    troca(psn1, psn2);
+    printf("\nAgora n1 e: %d", n1);
+    printf("\nAgora n2 e: %d", n2);
+
+    return 0;
+}
