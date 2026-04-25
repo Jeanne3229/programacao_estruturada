@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Elaborar um programa que leia dois valores inteiros (A e B). Em seguida faca uma funcao
+//que retorne a soma do dobro dos dois numeros lidos. A funcao dever a armazenar o dobro
+//de A na propria variavel A e o dobro de B na propria variavel B.
+
+void soma(int *p1, int *p2){
+    int dobro1 = 2 * (*p1);
+    *p1 = dobro1;
+    int dobro2 = 2 * (*p2);
+    *p2 = dobro2;
+    int soma_dobro = dobro1 + dobro2;
+    printf("\nA soma do dobro dos valores e: %d", soma_dobro);
+}
+
+
+int main()
+{
+    int a;
+    int b;
+    printf("Digite o valor de a: ");
+    scanf("%d", &a);
+    printf("\nDigite o valor de b: ");
+    scanf("%d", &b);
+    int *pa = &a;
+    int *pb = &b;
+    printf("\nValor atual de A: %d", a);
+    printf("\nValor atual de B: %d", b);
+    soma(pa,pb);
+    printf("\nNovo valor de A: %d", a);
+    printf("\nNovo valor de B: %d", b);
+
+    return 0;
+}
