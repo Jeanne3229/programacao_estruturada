@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 5
+/*Crie um programa que contenha um array de inteiros contendo 5 elementos. Utilizando
+apenas aritmetica de ponteiros, leia esse array do teclado e imprima o dobro de cada
+valor lido*/
+
+void solucao(int *pn, int tamanho){
+    printf("Digite 5 valores do nosso vetor: ");
+    int dobro[tamanho];
+    int *pd = dobro;
+    for(int i = 0; i < tamanho; i++){
+        scanf("%d", &pn[i]);
+        *(pd + i) = (*(pn +i) * 2);
+    }
+    for(int j = 0; j < tamanho; j++){
+        printf("\n\n%d ", *(pd + j));
+    }
+
+
+
+}
+
+/*então sempre que for usar ponteiro + índice:
+
+usa (p + i) primeiro, depois coloca o *. Acessar pd[i], so vai acessar o primeiro valor, precisamos fazer *(pd + i) 
+pra acessar valores
+posteriores  */
+int main()
+{
+    int vet[MAX];
+    int *pv = vet;
+    solucao(pv, MAX);
+    return 0;
+}
