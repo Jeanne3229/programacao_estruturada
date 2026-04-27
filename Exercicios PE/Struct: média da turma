@@ -1,20 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 30
 
 /*Faça um programa em C que declare um vetor do tipo struct Aluno que contém os campos nota1, nota2 e media.
 O usuário deverá digitar as notas dos 30 aluno (tanto a primeira nota, quanto a segunda nota).
 O programa deverá calcular a média de cada aluno utilizando peso 2 para a primeira nota e peso 3 para a segunda nota.
-O programa deverá imprimir qual a média da turma e depois deverá imprimir as notas e a média de todos os alunos que estiverem 
+O programa deverá imprimir qual a média da turma e depois deverá imprimir as notas e a média de todos os alunos que estiverem
 acima da média da turma (não é média 5 ou média 7, é a média que você calculou anteriormente).
 OBS: o programa deve estar modularizado, isto é, você PRECISA criar funções para as funcionalidades desejadas
 Entrega: link para o seu código no github (não é o link do repositório, é o link direto para este exercício).*/
 
+//a struct solicitada inicialmente
 struct Aluno{
     double nota1;
     double nota2;
     double media;
 };
-
+//preencher nota 1 e nota 2
 void preencher(struct Aluno *A, int tamanho){
     for(int i = 0; i < tamanho; i++){
         printf("Digite a nota 1 do aluno[%d]: ", i);
@@ -23,7 +25,7 @@ void preencher(struct Aluno *A, int tamanho){
         scanf("%lf", &A[i].nota2);
     }
 }
-
+//calcular media individual e geral, achei mais simples de entender com elas na mesma função
 void media(struct Aluno *A, int tamanho){
     double soma_medias = 0; //soma medias criado para calcular a media geral
     double media_geral = 0;
@@ -32,6 +34,11 @@ void media(struct Aluno *A, int tamanho){
         soma_medias += media_individual; //somando as medias individuais
     }
     media_geral = soma_medias / tamanho; //media geral fora do for
+
+    //Aqui eu to printando a media geral da turma
+    printf("\nMedia geral da turma: %lf", media_geral);
+
+    //agora vou informar os alunos que estão acima da média
     for(int j = 0; j < tamanho; j++){
         double media_individual = ((A[j].nota1 * 2.00) + (A[j].nota2 * 3.00)) / 5.00;
         if(media_individual > media_geral) {
@@ -43,11 +50,10 @@ void media(struct Aluno *A, int tamanho){
     }
 }
 
-
 int main()
 {
-    struct Aluno aluno[5];
-    preencher(aluno, 5);
-    media(aluno, 5);
+    struct Aluno aluno[MAX];
+    preencher(aluno, MAX);
+    media(aluno, MAX);
     return 0;
 }
