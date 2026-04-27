@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 7
+/* Declare um array de int com 7 elementos e inicialize-o com valores
+sequenciais de 0 a 6. Usando apenas aritmética de ponteiros (sem usar o operador de
+índice [] após a inicialização), acesse e imprima o 3º elemento (índice 2) e o 6º elemento
+(índice 5) do array*/
+
+void solucao(int *pn){
+    printf("O valor que ocupa a posicao 3 e: %d", *(pn + 2));
+    printf("\nO valor que acupa a posicao 6 e: %d\n", *(pn + 5));
+
+}
+
+int main()
+{
+    int v[MAX] = {0, 1, 2, 3, 4, 5, 6};
+    int *pv = v;
+    solucao(pv);
+    return 0;
+}
