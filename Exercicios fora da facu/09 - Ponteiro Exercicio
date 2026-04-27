@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 5
+/* Crie um array de double com 5 elementos. Preencha este array com valores
+lidos do teclado. Em seguida, utilizando ponteiros, itere sobre o array e imprima cada
+elemento juntamente com seu respectivo endereço de memória*/
+
+
+void endereco(double *pa, int tamanho){
+    printf("Digite os %d valores do seu vetor para descobrir seu endereco: ", MAX);
+    for(int i = 0; i < tamanho; i++){
+        scanf("%lf", &pa[i]);
+    }
+    for(int j = 0; j < tamanho; j++){
+        printf("Endereco do %lf: %p\n\n", *(pa + j), *(pa + j));
+    }
+
+
+}
+
+int main()
+{
+    double v[MAX];
+    double *pv = v;
+    int tamanho = MAX;
+    endereco(pv, tamanho);
+
+    return 0;
+}
