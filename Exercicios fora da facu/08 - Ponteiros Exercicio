@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*Enunciado: Declare duas variáveis do tipo char , char1 e char2, e inicialize-as com
+quaisquer caracteres. Compare os endereços de memória dessas duas variáveis e exiba o
+conteúdo da variável que possui o menor endereço.*/
+
+void menor(char *pn1, char *pn2){
+    printf("Endereco de memoria de J: %p", pn1);
+    printf("\nEndereco de memoria de E: %p", pn2);
+    if(pn1 < pn2){
+        printf("\n\nO menor endereco de memoria e o de j: %c", *pn1);
+    }
+    else{
+        printf("\n\nO menor endereco de memoria e o de e: %c", *pn2);
+    }
+
+}
+
+
+int main()
+{
+    char a = 'j';
+    char b = 'e';
+    char *pa = &a;
+    char *pb = &b;
+    menor(pa,pb);
+
+    return 0;
+}
