@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LIN 3
+#define COL 3
+/*Crie uma matriz de
+int 2x4. Preencha a matriz com valores de sua escolha. Em
+seguida, utilizando ponteiros, imprima todos os elementos da matriz. Você pode usar um
+ponteiro para o primeiro elemento e aritmética de ponteiros para navegar*/
+
+void preencher(int *pn, int lin, int col){
+    for(int i = 0; i < lin; i++) {
+        for(int j = 0; j < col; j++){
+            printf("Digite o valor da pos [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", (pn + (i * col) + j)); //Formula pra pegar o endereco da matriz
+        }
+    }
+}
+
+void imprimir(int *pn, int lin, int col){
+    for(int i = 0; i < lin; i++) {
+        for(int j = 0; j < col; j++){
+            printf("%d ", *(pn + (i * col) + j)); //formula pra pegar o VALOR do endereço da matriz
+        }
+    }
+}
+
+
+
+int main()
+{
+    int v[LIN][COL];
+    int *pv = &v[0][0];
+    preencher(pv, LIN, COL);
+    imprimir(pv, LIN, COL);
+
+
+
+
+
+    return 0;
+}
