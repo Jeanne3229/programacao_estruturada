@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 30
+#define MAX 2
 
 /*Faça um programa em C que declare um vetor do tipo struct Aluno que contém os campos nota1, nota2 e media.
 O usuário deverá digitar as notas dos 30 aluno (tanto a primeira nota, quanto a segunda nota).
@@ -16,6 +16,9 @@ struct Aluno{
     double nota2;
     double media;
 };
+
+double media_geral = 0; //fora do escopo pra poder acessar nas duas funções 
+
 //preencher nota 1 e nota 2
 void preencher(struct Aluno *A, int tamanho){
     for(int i = 0; i < tamanho; i++){
@@ -25,10 +28,9 @@ void preencher(struct Aluno *A, int tamanho){
         scanf("%lf", &A[i].nota2);
     }
 }
-//calcular media individual e geral, achei mais simples de entender com elas na mesma função
+//calcular media individual
 void media(struct Aluno *A, int tamanho){
-    double soma_medias = 0; //soma medias criado para calcular a media geral
-    double media_geral = 0;
+    double soma_medias = 0; //soma medias criado para calcular a media 
     for(int i = 0; i < tamanho; i++){ //percorre todas as notas
         double media_individual = ((A[i].nota1 * 2.00) + (A[i].nota2 * 3.00)) / 5.00; //calculo da media individual
         soma_medias += media_individual; //somando as medias individuais
@@ -36,9 +38,10 @@ void media(struct Aluno *A, int tamanho){
     media_geral = soma_medias / tamanho; //media geral fora do for
 
     //Aqui eu to printando a media geral da turma
-    printf("\nMedia geral da turma: %lf", media_geral);
+    printf("\nMedia geral da turma: %lf", media_geral);}
+    //agora vou informar os alunos que estão acima da média da turma 
 
-    //agora vou informar os alunos que estão acima da média
+void maiorMedia(struct Aluno *A, int tamanho) {
     for(int j = 0; j < tamanho; j++){
         double media_individual = ((A[j].nota1 * 2.00) + (A[j].nota2 * 3.00)) / 5.00;
         if(media_individual > media_geral) {
@@ -55,5 +58,6 @@ int main()
     struct Aluno aluno[MAX];
     preencher(aluno, MAX);
     media(aluno, MAX);
+    maiorMedia(aluno, MAX);
     return 0;
 }
