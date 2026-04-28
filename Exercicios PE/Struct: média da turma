@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 2
+#define MAX 30
 
 /*Faça um programa em C que declare um vetor do tipo struct Aluno que contém os campos nota1, nota2 e media.
 O usuário deverá digitar as notas dos 30 aluno (tanto a primeira nota, quanto a segunda nota).
