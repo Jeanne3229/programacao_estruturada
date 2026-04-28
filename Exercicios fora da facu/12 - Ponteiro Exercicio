@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 5
+/*Crie um programa que contenha um array contendo 5 elementos inteiros. Leia esse array
+do teclado e imprima o enderec¸o das posic¸˜ oes contendo valores pares*/
+
+void preencher(int *pn,int tamanho){
+    printf("Digite 5 valores: ");
+    for(int i = 0; i < tamanho; i++){
+    scanf("%d", &pn[i]);
+    }
+}
+
+void par(int *pn, int tamanho){
+    for(int i = 0; i < tamanho; i++){
+        if(pn[i] % 2 == 0){
+            printf("\nEndereco do valor par [%d]: %p\n", pn[i], &pn[i]);
+    }
+} }
+
+
+int main()
+{
+    int vet[MAX];
+    int *pv = vet;
+    preencher(pv, MAX);
+    par(pv, MAX);
+    return 0;
+}
