@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+//Anotacoes Aula 02 struct
+int main(){
+	
+	//se o proprio struct for um ponteiro usa a seta, se ele for um vetor usa ., ou seja,  Quanodo se usa colchetes 
+	//se tratando de um vetor ai usa .; pra chamar uma outra struct dentro de outra struct bota o & e o indice i 
+	//se tratar de uma string, ou seja, um ponteiro, n é preciso botar o scanf 
+  //usa & comercial quando tem ponteiro nos parametros da funcao, quando n tenho n precisa. 
+	//sempre q pede um numero e dps uma string da problema, ai tem q fazer aquilo de tirar o enter
+	//busca binaria, insertion, busca sequencial, bubble, selection
+  //Na busca sequencial, nos parametros bota um x[], pra saber se o valor de x esta dentro da sequencia. 
+  //n posso comparar vetores, para comparar vetores de string usa strcmp, dentro do parametro 
+  // eu boto as duas funções q eu quero comparar e fora o sinal q eu queria comparar 0 
+  //ideia pro codigo --> while (opcao == 'S' || opcao == 's) 
+  //busca sequencial n pode ter else. 
+  //quando é preciso ordenar strings ou struct, ao trocarmos por exemplo pessoa1 q tem um peso1 e uma idade de 15 e uma pessoa 2 
+  //q tem uma idade de 18, ao trocarmos as pessoas, temos q garantir que o peso das duas tb foi mudado, ou seja trocar a struct toda. 
+	//ordem alfabetica com ordenacao 
+	
+	
+	return 0;
+}
