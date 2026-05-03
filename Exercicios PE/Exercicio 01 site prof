@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define VET 4
+#define TAM 200
+
+
+struct Programa{
+    char estado[TAM];
+    int veiculos;
+    int acidentes;
+};
+
+void lerStr(char str[], int tamMax) {
+    fgets(str, tamMax, stdin); //Ela le ate encontrar um \n ou seja um enter, ou ate chegar no final do tamanho da string
+    int tam = strlen(str); //calcula o tamanho da string e guarda na variavel tam
+    if (tam > 0 && str[tam - 1] == '\n') { //se o tamanho for maior q 0, ou seja ser maior q o inicio, e o final for um enter ai substitui por \0 que corta a string,
+        str[tam - 1] = '\0';//indicando seu fim
+    }
+}
+
+/*Coletar os dados dos 26 estados e armazenar em um vetor de estruturas. Para tal,
+construa um procedimento que irá solicitar ao usuário que informe os dados
+coletados de cada estado; */
+
+void coletar(struct Programa *P, int tamanho){
+    printf("\n----AREA COLETAR DADOS DO ESTADO----\n");
+    for(int i = 0; i < tamanho; i++){ //aqui ele vai percorrer o vetor todo q inicialmente esta vacio e ir preenchendo
+        printf("\nDigite o nome do seu estado: ");
+        lerStr(P[i].estado, TAM); //AQUI DEVE SER PASSADO A QUANTIA DE CARACTERES
+        printf("\nDigite a quantidade de veiculos do seu estado: ");
+        scanf("%d", &P[i].veiculos);
+        getchar();
+        printf("\nDigite a quantidade de acidentes de carro do seu estado: ");
+        scanf("%d", &P[i].acidentes);
+        getchar();
+    }
+}
+
+/*Informar a maior e a menor número de acidentes de trânsito e o nome dos estados
+em que eles ocorreram. Para tal, construa um procedimento que receba como
+parâmetro o cadastro e tenha como parâmetros de saída (por referência) os
+índices (posição no cadastro) dos estados que possuem as características
+solicitadas. A exibição dos dados deve ocorrer no programa principal.*/
+
+void MaiorMenor(struct Programa *P,int tamanho, int *maior, int *menor){
+    printf("\n----AREA MAIOR E MENOR ESTADOS COM ACIDENTES----\n");
+    *maior = P[0].acidentes;
+    *menor = P[0].acidentes;
+    for(int i = 0; i < tamanho; i++){
+        if(P[i].acidentes > P[*maior].acidentes){
+            *maior = i;
+        }
+        if(P[i].acidentes < P[*menor].acidentes){
+            *menor = i;
+        }
+    }
+}
+
+
+
+/*Informar o percentual de veículos envolvidos em acidentes de trânsito em cada
+estado. Para tal, construa uma função que receba como parâmetro o cadastro e o
+estado e retorne o percentual solicitado;  */
+
+void percentual(struct Programa *P, int tamanho){
+    int percentual;
+    printf("\n----AREA PERCENTUAL DE VEICULOS ENVOLVIDOS EM ACIDENTES----\n");
+    for(int i = 0; i < tamanho;i++){
+        percentual = (P[i].acidentes * 100) / P[i].veiculos;
+        printf("\nEstado: %s\tPercentual: %d\n", P[i].estado, percentual);
+    }
+}
+
+
+
+/*Informar a média de acidentes no país. Para tal, construa uma função que receba
+como parâmetro o cadastro e retorne a média solicitada. A exibição da média deve
+ocorrer no programa principal; */
+
+
+int media(struct Programa *P, int tamanho){
+    printf("\n----AREA MEDIA DE ACIDENTES NO PAIS----\n");
+    int soma_acidentes = 0;
+    for(int i = 0; i < tamanho; i++){
+        soma_acidentes += P[i].acidentes;
+    }
+    return soma_acidentes / tamanho;
+}
+
+/*Informar o nome dos estados que estão acima da média de acidentes do país.
+Para tal, construa um procedimento que receba como parâmetro o cadastro e a
+media do pais e exiba os dados solicitados. */
+
+void AcimaMedia(struct Programa *P, int tamanho, int media){
+    printf("\n----AREA ACIMA DA MEDIA DE ACIDENTES NO PAIS----\n");
+    for(int i = 0; i < tamanho; i++){
+        if(P[i].acidentes > media){
+            printf("\nIndice de acidentes maior q a media do pais: %s", P[i].estado);
+        }
+    }
+}
+
+
+int main()
+{
+    struct Programa vet[VET];
+    coletar(vet, VET);
+    int maior, menor;
+    MaiorMenor(vet, VET, &maior, &menor);
+    printf("\nMAIOR: %d", vet[maior].acidentes, vet[menor].acidentes);
+    printf("\nMENOR: %d", menor);
+    percentual(vet, VET);
+    int media2;
+    media2 = media(vet, VET);
+    printf("\nA media de acidentes do pais e: %d\n", media2);
+    AcimaMedia(vet, VET, media2);
+
+
+
+    return 0;
+}
