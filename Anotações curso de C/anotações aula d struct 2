@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Anotações aula 2 de struct
+
+
+
+
+//Para retornar dois valores no struct, como no exercicio de maior e menor, tem q criar um struct pra esse dois valores, pra poder retornar dois. No caso da media n é preciso, mas quando for necessário retornar 
+//dois numa mesma
+//função ai tem que criar uma nova struct pra esses dois.
+
