@@ -1,38 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define VET 4
-#define TAM 200
+#define MAXC 300
+#define ESTADOS 2
 
-
-struct Programa{
-    char estado[TAM];
+struct Cadastro{
+    char estado[MAXC];
     int veiculos;
     int acidentes;
 };
 
-void lerStr(char str[], int tamMax) {
-    fgets(str, tamMax, stdin); //Ela le ate encontrar um \n ou seja um enter, ou ate chegar no final do tamanho da string
-    int tam = strlen(str); //calcula o tamanho da string e guarda na variavel tam
-    if (tam > 0 && str[tam - 1] == '\n') { //se o tamanho for maior q 0, ou seja ser maior q o inicio, e o final for um enter ai substitui por \0 que corta a string,
-        str[tam - 1] = '\0';//indicando seu fim
+int qtdStr(char texto[]){
+    int i = 0;
+    while (texto[i] != '\0'){ // literais caractereres devem ser utilizados com aspas simples
+        i += 1;
     }
 }
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if (tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+//e necessario criar outra struct pois vai retornar no programa principal dois valores, ou seja,no programa principal, int main. 
+struct Resp{
+    int maior;
+    int menor;
+};
+
+
 
 /*Coletar os dados dos 26 estados e armazenar em um vetor de estruturas. Para tal,
 construa um procedimento que irá solicitar ao usuário que informe os dados
 coletados de cada estado; */
 
-void coletar(struct Programa *P, int tamanho){
-    printf("\n----AREA COLETAR DADOS DO ESTADO----\n");
-    for(int i = 0; i < tamanho; i++){ //aqui ele vai percorrer o vetor todo q inicialmente esta vacio e ir preenchendo
+void coletarD(struct Cadastro *C, int tamanho){
+    printf("\n[AREA COLETAR DADOS SOBRE O ESTADO]\n");
+    for(int i = 0; i < tamanho; i++){
         printf("\nDigite o nome do seu estado: ");
-        lerStr(P[i].estado, TAM); //AQUI DEVE SER PASSADO A QUANTIA DE CARACTERES
+        lerStr(C[i].estado, MAXC);
         printf("\nDigite a quantidade de veiculos do seu estado: ");
-        scanf("%d", &P[i].veiculos);
+        scanf("%d", &C[i].veiculos);
         getchar();
-        printf("\nDigite a quantidade de acidentes de carro do seu estado: ");
-        scanf("%d", &P[i].acidentes);
+        printf("\nDigite a quantidade de acidentes do seu estado: ");
+        scanf("%d", &C[i].acidentes);
         getchar();
     }
 }
@@ -41,49 +54,45 @@ void coletar(struct Programa *P, int tamanho){
 em que eles ocorreram. Para tal, construa um procedimento que receba como
 parâmetro o cadastro e tenha como parâmetros de saída (por referência) os
 índices (posição no cadastro) dos estados que possuem as características
-solicitadas. A exibição dos dados deve ocorrer no programa principal.*/
+solicitadas. A exibição dos dados deve ocorrer no programa principal. */
 
-void MaiorMenor(struct Programa *P,int tamanho, int *maior, int *menor){
-    printf("\n----AREA MAIOR E MENOR ESTADOS COM ACIDENTES----\n");
-    *maior = P[0].acidentes;
-    *menor = P[0].acidentes;
+void MaiorMenor(struct Cadastro *C, int tamanho, struct Resp *r){
+    printf("\n[AREA PARA INFORMAR A MAIOR E A MENOR EM NUMERO DE ACIDENTES]\n");
+    r->maior = 0;
+    r->menor = 0;
     for(int i = 0; i < tamanho; i++){
-        if(P[i].acidentes > P[*maior].acidentes){
-            *maior = i;
+        if(C[i].acidentes > C[r->maior].acidentes){ //aqui ele ta dizendo va na struct, pegue a posicao q eu defini inicialmente
+            r->maior = i; //e acesse o campo acidentes, ou seja o valor da posicao i, é maior q o atual?
         }
-        if(P[i].acidentes < P[*menor].acidentes){
-            *menor = i;
+        if(C[i].acidentes < C[r->menor].acidentes){
+            r->menor = i;
         }
     }
 }
-
-
 
 /*Informar o percentual de veículos envolvidos em acidentes de trânsito em cada
 estado. Para tal, construa uma função que receba como parâmetro o cadastro e o
 estado e retorne o percentual solicitado;  */
 
-void percentual(struct Programa *P, int tamanho){
-    int percentual;
-    printf("\n----AREA PERCENTUAL DE VEICULOS ENVOLVIDOS EM ACIDENTES----\n");
-    for(int i = 0; i < tamanho;i++){
-        percentual = (P[i].acidentes * 100) / P[i].veiculos;
-        printf("\nEstado: %s\tPercentual: %d\n", P[i].estado, percentual);
+
+void percentual(struct Cadastro *C, int tamanho){
+    printf("\n[AREA PARA INFORMAR O PERCENTUAL]\n");
+    for(int i = 0; i < tamanho; i++){
+        if(C[i].veiculos > 0){
+            int per = (C[i].acidentes * 100) / C[i].veiculos;
+            printf("\nEstado: %s\nPercentual do estadon acima: %d", C[i].estado, per);
+        }
     }
 }
 
-
-
-/*Informar a média de acidentes no país. Para tal, construa uma função que receba
+/* Informar a média de acidentes no país. Para tal, construa uma função que receba
 como parâmetro o cadastro e retorne a média solicitada. A exibição da média deve
 ocorrer no programa principal; */
 
-
-int media(struct Programa *P, int tamanho){
-    printf("\n----AREA MEDIA DE ACIDENTES NO PAIS----\n");
+int media(struct Cadastro *C, int tamanho){
     int soma_acidentes = 0;
     for(int i = 0; i < tamanho; i++){
-        soma_acidentes += P[i].acidentes;
+        soma_acidentes += C[i].acidentes;
     }
     return soma_acidentes / tamanho;
 }
@@ -92,31 +101,32 @@ int media(struct Programa *P, int tamanho){
 Para tal, construa um procedimento que receba como parâmetro o cadastro e a
 media do pais e exiba os dados solicitados. */
 
-void AcimaMedia(struct Programa *P, int tamanho, int media){
-    printf("\n----AREA ACIMA DA MEDIA DE ACIDENTES NO PAIS----\n");
+void AcimaMedia(struct Cadastro *C, int tamanho, int media){
+    printf("\n[AREA DOS ESTADOS QUE ESTAO ACIMA DA MEDIA DE ACIDENTES DO PAIS]\n");
     for(int i = 0; i < tamanho; i++){
-        if(P[i].acidentes > media){
-            printf("\nIndice de acidentes maior q a media do pais: %s", P[i].estado);
+        if(C[i].acidentes > media){
+            printf("\nEstado[%d]: %s", i, C[i].estado);
         }
     }
 }
 
 
-int main()
-{
-    struct Programa vet[VET];
-    coletar(vet, VET);
-    int maior, menor;
-    MaiorMenor(vet, VET, &maior, &menor);
-    printf("\nMAIOR: %d", vet[maior].acidentes, vet[menor].acidentes);
-    printf("\nMENOR: %d", menor);
-    percentual(vet, VET);
+
+
+int main() {
+    struct Cadastro vet[ESTADOS];
+    coletarD(vet, ESTADOS);
+    struct Resp r;
+    MaiorMenor(vet, ESTADOS, &r);
+    printf("\nMaior: %d\n", r.maior);
+    printf("\nMenor: %d\n", r.menor);
+    printf("\n[AREA MAIOR E MENOR QUANTIDADE DE ACIDENTES DOS ESTADOS]\n");
+    printf("\nMAIOR %s: %d \nMENOR %s: %d",vet[r.maior].estado, vet[r.maior].acidentes, vet[r.menor].estado, vet[r.menor].acidentes);
+    percentual(vet, ESTADOS);
     int media2;
-    media2 = media(vet, VET);
-    printf("\nA media de acidentes do pais e: %d\n", media2);
-    AcimaMedia(vet, VET, media2);
-
-
-
+    media2 = media(vet, ESTADOS);
+    printf("\n\n[AREA MEDIA DE ACIDENTES NO PAIS]\n\n");
+    printf("\nA media de acidentes no pais e de: %d", media2);
+    AcimaMedia(vet, ESTADOS, media2);
     return 0;
 }
