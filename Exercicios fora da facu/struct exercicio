@@ -1,0 +1,92 @@
+include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define PESSOA 5
+#define CARACTERE 200
+
+struct Pessoa{
+    char nome[CARACTERE];
+    int idade;
+    double peso;
+    double imc;
+    double altura;
+};
+
+void lerStr(char str[], int tamMax) {
+    fgets(str, tamMax, stdin);
+    int tam = strlen(str);
+    if (tam > 0 && str[tam - 1] == '\n') {
+        str[tam - 1] = '\0';
+    }
+}
+
+void preencher(struct Pessoa *P, int tamanho){
+    printf("\n----AREA PREENCHER----\n");
+    for(int i = 0; i < tamanho; i++){
+        printf("\nDigite o nome da pessoa [%d]: ", i);
+        lerStr(P[i].nome, CARACTERE); //O TAMANHO É O TAMANHO DA STRING TOTAL, CARACTERES!!! N ESQUECER
+        printf("\nDigite a idade da pessoa [%d]: ", i);
+        scanf("%d", &P[i].idade);
+        printf("\nDigite o peso da pessoa [%d]: ", i);
+        scanf("%lf", &P[i].peso);
+        getchar();
+        printf("\nDigite a altura da pessoa [%d]: ", i);
+        scanf("%lf", &P[i].altura);
+        getchar();
+    }
+}
+
+/*impressão de Todas as Pessoas: Crie uma nova função chamada imprimirTodasPessoas que receba como parâmetro
+o vetor de struct Pessoa e o número de pessoas no vetor. Esta função deve iterar sobre o vetor e imprimir os dados de cada pessoa
+ utilizando a função imprimirPessoa.*/
+
+void imprimirTodasPessoas(struct Pessoa *P, int tamanho){
+     printf("\n----AREA IMPRESSAO PESSOAS----\n");
+    for(int i = 0; i < tamanho; i++){
+        printf("\nNome da pessoa [%d]: %s", i, P[i].nome);
+        printf("\nIdade da pessoa [%d]: %d", i, P[i].idade);
+        printf("\nPeso da pessoa [%d]: %.2fkg", i, P[i].peso);
+        printf("\nImc da pessoa[%d]: %.2f", i, P[i].imc);
+    }
+ }
+
+struct Pessoa encontrarPessoaMaisvelha(struct Pessoa v[], int tamanho){
+    int maior = 0;
+    int indice = 0;
+    for(int i = 0; i < tamanho; i++){
+        if(v[i].idade > maior){
+            maior = v[i].idade;
+            indice = i;
+        }
+    }
+    return v[indice];
+
+};
+
+
+void CalcularImc(struct Pessoa *P, int tamanho){
+    double imc = 0;
+    for(int i = 0; i < tamanho; i++){
+        double imc = P[i].peso / (P[i].altura * P[i].altura);
+        P[i].imc = imc;
+    }
+}
+
+
+
+int main()
+{
+    struct Pessoa meuVet[PESSOA];
+    preencher(meuVet, PESSOA);
+    struct Pessoa Pessoa_maisvelha;
+    Pessoa_maisvelha = encontrarPessoaMaisvelha(meuVet, PESSOA);
+    printf("\n\nNome da pessoa mais velha: %s", Pessoa_maisvelha.nome);
+    printf("\nIdade da pessoa mais velha: %d", Pessoa_maisvelha.idade);
+    printf("\n----AREA IMC----\n");
+    CalcularImc(meuVet, PESSOA);
+    imprimirTodasPessoas(meuVet, PESSOA);
+
+
+
+    return 0;
+}
