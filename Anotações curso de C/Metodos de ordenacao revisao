@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void bubblesort (double v[], int n) {
+    int i, fim, pos, troca;
+    double chave;
+    troca = 1; fim = n - 2; pos = 0;
+    while (troca == 1) { 
+        troca = 0;
+        for (i = 0; i <= fim; i++) { //enquanto tiver troca vai continuar analisando os adjacentes
+            if (v[i] > v[i+1]) { //se valor atual for maior q o proximo ai ocorre a troca
+                chave = v[i];
+                v[i] = v[i+1]; 
+                v[i+1] = chave;
+                pos = i; troca = 1;
+            }
+        }
+        fim = pos - 1; //ele faz a troca ate i estar no lugar correto, ou seja, é bem lento
+} }
