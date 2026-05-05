@@ -1,0 +1,226 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define VET 2
+#define CARACTERES  200
+
+struct Cadastro{
+    int codigo;
+    char descricao[CARACTERES];
+    double v_unitario;
+    int quantidade;
+};
+
+int qtdStr(char texto[]){
+    int i = 0;
+    while (texto[i] != '\0'){ // literais caractereres devem ser utilizados com aspas simples
+        i += 1;
+    }
+}
+
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if (tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+
+/* Um procedimento para cadastrar um novo produto; */
+
+void novoP(struct Cadastro *C, int tamanho){
+    printf("\n----AREA CADASTRO NOVO PRODUTO----\n");
+    for(int i = 0; i < tamanho; i++){
+        printf("\nDigite o codigo do produto[%d]: ", i);
+        scanf("%d", &C[i].codigo);
+        getchar();
+        printf("\nDigite a descricao do produto[%d]: ", i);
+        lerStr(C[i].descricao, CARACTERES);
+        printf("\nDigite o valor unitario do seu produto[%d]: ", i);
+        scanf("%lf", &C[i].v_unitario);
+        printf("\nDigite a quantidade em estoque do seu produto[%d]: ", i);
+        scanf("%d", &C[i].quantidade);
+        getchar();
+    }
+    printf("\n----FIM DA AREA DO CADASTRO DO NOVO PRODUTO----\n");
+}
+
+/*Um procedimento que, dado um código, permita alterar seu valor unitário; */
+
+void Alterar(struct Cadastro *C, int tamanho){
+    printf("\n----AREA ALTERAR VALOR UNITARIO----\n");
+    int escolha;
+    double valor;
+    int encontrou = 0;
+    printf("\nDigite o codigo que voce deseja alterar o valor unitario: ");
+    scanf("%d", &escolha);
+    for(int i = 0; i < tamanho; i++){
+        if(escolha == C[i].codigo){
+            printf("\nCodigo acessado. Digite o novo valor unitario: ");
+            scanf("%lf", &valor);
+            C[i].v_unitario = valor;
+            encontrou = 1;
+        }}
+        if(encontrou == 0){
+            printf("\nCodigo nao encontrado!");
+        }
+        }
+
+
+/*Uma função que, dado um código, informe o valor unitário do produto; */
+
+void exibirVu(struct Cadastro *C, int tamanho){
+    printf("\n----AREA EXIBICAO VALOR UNITARIO----\n");
+    int escolha;
+    int achou = 0;
+    printf("\nDigite o codigo do produto que voce deseja visualizar o valor unitario: ");
+    scanf("%d", &escolha);
+    for(int i = 0; i < tamanho; i++){
+        if(escolha == C[i].codigo){
+            printf("\nProduto: %s Valor Unitario: %lf", C[i].descricao, C[i].v_unitario);
+            achou = 1;
+        }
+        }
+        if(achou == 0){
+            printf("\nCodigo nao encontrado!\n");
+    }
+    printf("\n----FIM DA AREA DE EXIBICAO DO VALOR UNITARIO----\n");
+}
+
+
+
+/* Uma função que, dado um código, informe a quantidade em estoque do produto;*/
+
+void exibirEstoque(struct Cadastro *C, int tamanho){
+    printf("\n----AREA EXIBIR ESTOQUE----\n");
+    int escolha;
+    int encontrou = 0;
+    printf("\nDigite o codigo do produto que voce deseja verificar o estoque: ");
+    scanf("%d", &escolha);
+    for(int i = 0; i < tamanho; i++){
+        if(escolha == C[i].codigo){
+            printf("\nCodigo: %d Estoque: %d", C[i].codigo, C[i].quantidade);
+            encontrou = 1; //n esquecer
+        }
+    }
+    if(encontrou == 0){
+        printf("\nProduto nao encontrado!");
+    }
+    printf("\n----FIM DA AREA DE EXIBIR ESTOQUE---\n");
+}
+
+/* Um procedimento de venda que, dado o código e a quantidade desejada, e caso
+a quantidade exista no estoque, subtrai a quantidade vendida da quantidade
+existente e informa o valor a ser pago. OBS1: Caso o produto esteja com estoque
+zero, o procedimento de informar ao usuário. OBS2: Caso a quantidade desejada
+seja inferior a quantidade existente o procedimento deve perguntar ao usuário se
+deseja efetivar a compra. Caso afirmativo, o programa deve zerar o estoque e
+informar o valor a ser pago.*/
+
+void venda(struct Cadastro *C, int tamanho){
+    printf("\n----AREA DE VENDA----\n");
+    int escolha, qtd, confirma;
+    printf("\nDigite o codigo de produto que voce deseja comprar: ");
+    scanf("%d", &escolha);
+    printf("\nDigite a quantidade que voce deseja comprar: ");
+    scanf("%d", &qtd);
+    for(int i = 0; i < tamanho; i++){
+        if(C[i].codigo == escolha){ //verificar se o codigo existe dentro dos codigos q foram criados.
+            if(C[i].quantidade == 0){ //se o estoque for zero do produto
+                printf("\nProduto com estoque zerado!\n");
+                return;
+            }
+            if(qtd > C[i].quantidade){ //se a quantidade desejada for maior q existe no estoque
+                printf("\nQuantidade insuficiente!\n");
+                return;
+            }
+            printf("\nDeseja efetivar a compra? (1 = sim): ");
+            scanf("%d", &confirma);
+            if(confirma == 1){
+                C[i].quantidade -= qtd;
+                double v_pago = qtd * C[i].v_unitario;
+                printf("\nValor a pagar: %.2lf\n", v_pago);
+            } else {
+                printf("\nCompra cancelada!\n");
+            }
+            return;
+        }
+    }
+    printf("\nCodigo nao encontrado!\n");
+}
+
+/*Um procedimento para, dado um código, atualizar a quantidade em estoque do
+produto; */
+
+
+
+void AtualizarEstoque(struct Cadastro *C, int tamanho){
+    printf("\n----AREA ATUALIZAR ESTOQUE----\n");
+    int escolha = 0;
+    int qtd = 0;
+    int encontrou = 0;
+    printf("\nDigite o codigo do produto que voce deseja atualizar estoque: ");
+    scanf("%d", &escolha);
+    printf("\nDigite o valor que voce deseja diminuir ou somar: ");
+    scanf("%d", &qtd);
+    for(int i = 0; i < tamanho; i++){
+        if(C[i].codigo == escolha){
+            if(qtd < 0){
+                C[i].quantidade -= qtd;
+                encontrou = 1;
+            }
+            if(qtd > 0){
+                C[i].quantidade += qtd;
+                encontrou = 1;
+            }
+            if(qtd == 0){
+                printf("\nVoce nao digitou nenhum valor!");
+                encontrou = 1;
+            }
+        }
+    }
+    if(encontrou == 0){
+        printf("\nCODIGO NAO ENCONTRADO!");
+    }
+}
+
+/*Um procedimento para exibir o código e a descrição de todos os produtos;*/
+
+void exibirTodos(struct Cadastro *C, int tamanho){
+    printf("\n----EXIBIR CODIGO E DESCRICAO DOS PRODUTOS----\n");
+    for(int i = 0; i < tamanho; i++){
+            printf("\n*PRODUTOS*");
+            printf("\n%d: %s", C[i].codigo, C[i].descricao);
+    }
+    printf("\nFIM DA AREA DE EXIBICAO DO CODIGO E DESCRICAO!\n");
+}
+
+/*Um procedimento para exibir o código e a descrição de todos os produtos com
+estoque zero.*/
+
+
+void estoquezero(struct Cadastro *C, int tamanho){
+    printf("\n----AREA COM ESTOQUE 0----\n");
+    for(int i = 0; i < tamanho; i++){
+        if(C[i].quantidade == 0){
+            printf("\n*Produto com estoque 0*");
+            printf("\n%d: %s", C[i].codigo, C[i].descricao);
+        }
+    }
+    printf("\nFIM DA AREA COM ESTOQUE 0");
+}
+
+int main()
+{
+    struct Cadastro meuVet[VET];
+    novoP(meuVet, VET);
+    Alterar(meuVet, VET);
+    exibirVu(meuVet, VET);
+    exibirEstoque(meuVet, VET);
+    venda(meuVet, VET);
+    AtualizarEstoque(meuVet, VET);
+    exibirTodos(meuVet, VET);
+    estoquezero(meuVet, VET);
+    return 0;
+}
