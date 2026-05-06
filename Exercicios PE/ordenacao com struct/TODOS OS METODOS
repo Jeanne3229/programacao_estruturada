@@ -18,6 +18,7 @@ int qtdStr(char texto[]){
     while (texto[i] != '\0'){ // literais caractereres devem ser utilizados com aspas simples
         i += 1;
     }
+    return i;
 }
 
 
