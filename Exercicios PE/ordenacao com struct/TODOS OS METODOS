@@ -101,6 +101,7 @@ void insertionSort(struct Produto v[], int n){
 
 /*implemente o Insertion Sort para ordenar o array de
 Produto pelo nome do produto em ordem alfabética crescente.*/
+
 void insertionSortPorNome(struct Produto v[], int n){
     int i, j;
     struct Produto chave;
