@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define CARACTERES 200
+#define MAX 2
+
+//METODOS DE ORDENAÇÃO COM STRUCT POR NOME E POR NUMEROS, DECRESCENTE E CRESCENTES!
+
+struct Produto{
+    int codigo;
+    char nome[CARACTERES];
+    double preco;
+    int qtd_estoque;
+};
+
+int qtdStr(char texto[]){
+    int i = 0;
+    while (texto[i] != '\0'){ // literais caractereres devem ser utilizados com aspas simples
+        i += 1;
+    }
+}
+
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if (tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+void preencher(struct Produto *P, int tamanho){
+    for(int i = 0; i < tamanho; i++){
+        printf("\nDigite o codigo que voce deseja no seu produto: ");
+        scanf("%d", &P[i].codigo);
+        getchar();
+        printf("\nDigite o nome do produto: ");
+        lerStr(P[i].nome, CARACTERES);
+        printf("\nDigite o preco do produto: ");
+        scanf("%lf", &P[i].preco);
+        printf("\nDigite o estoque do produto: ");
+        scanf("%d", &P[i].qtd_estoque);
+        getchar();}
+}
+
+
+
+void imprimir(struct Produto *P, int tamanho){
+    for(int i = 0; i < tamanho; i++){
+        printf("\n*PRODUTOS*");
+        printf("\nCODIGO: %d NOME: %s PRECO: %.2lf ESTOQUE: %d", P[i].codigo, P[i].nome, P[i].preco, P[i].qtd_estoque);
+    }
+}
+
+void bubbleSort(struct Produto v[], int n){
+    int i, fim, pos, troca;
+    struct Produto chave;
+    troca = 1; fim = n - 2; pos = 0;
+    while(troca == 1){
+        troca = 0;
+        for(i = 0; i <= fim; i++){
+            if(v[i].codigo > v[i + 1].codigo){ //se for < vai ser decrescente, se for > vai ser crescente
+                chave = v[i];
+                v[i] = v[i + 1];
+                v[i + 1] = chave;
+                pos = i; troca = 1;}}
+            }
+        }
+
+void selectionSort(struct Produto v[], int n){
+    int i, j, menor;
+    struct Produto aux;
+    for(i = 0; i < n - 1; i+= 1){
+        menor = i;
+        for(j = i + 1; j <= n - 1; j += 1){
+            if(v[j].codigo < v[menor].codigo){ //aqui se for > vai ser decrescente, se for < vai ser crescente
+                menor = j;
+            }
+        }
+        aux = v[i];
+        v[i] = v[menor];
+        v[menor] = aux;
+    }
+}
+
+void insertionSort(struct Produto v[], int n){
+    int i, j;
+    struct Produto chave;
+    for(i = 1; i <= n - 1; i += 1){
+        chave = v[i];
+        j = i - 1;
+        while(j >= 0 && v[j].codigo > chave.codigo){ //> crescente, < decrescente
+            v[j + 1] = v[j];
+            j -= 1;
+        }
+        v[j + 1] = chave;
+    }
+}
+
+
+
+/*implemente o Insertion Sort para ordenar o array de
+Produto pelo nome do produto em ordem alfabética crescente.*/
+void insertionSortPorNome(struct Produto v[], int n){
+    int i, j;
+    struct Produto chave;
+    for(i = 1; i <= n - 1; i += 1){
+        chave = v[i];
+        j = i - 1;
+        while(j >= 0 && strcmp(v[j].nome, chave.nome) > 0){ //Se quisse q fosse em ordem decrescente ia ser <
+            v[j + 1] = v[j]; //se o while tivesse == 0, ia deslocar se eles fossem iguais
+            j -= 1;
+        }
+        v[j + 1] = chave;
+    }
+}
+
+int main()
+{
+    struct Produto meuVet[MAX];
+    preencher(meuVet, MAX);
+    imprimir(meuVet, MAX);
+    return 0;
+}
