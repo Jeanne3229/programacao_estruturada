@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//FGETC serve pra pegar UM caractere do arquivo que voce tem. Por exemplo se na minha pasta do codeblock eu tiver um arquivo
+//chamado "teste.txt" com uma frase interna salva no bloco de texto, ele vai imprimir UM caracter desse texto que eu escrevi quando
+//eu executo.
+
+
+int main(){
+    //CRIACAO DO ARQUIVO E TITULO
+    FILE *arq;
+    arq = fopen("teste.txt", "r");
+
+    //VERIFICAR SE O ARQUIVO PODE SER ABERTO CORRETAMENTE
+
+    if(arq == NULL){
+        printf("\nO arquivo nao pode ser aberto corretamente!!!!");
+        return -1;
+    }
+
+
+
+    printf("\nArquivo criado corretamente!");
+    char caracter;
+
+    while((caracter = fgetc(arq)) != EOF){ //Enquanto tiver caracter diferente de EOF(FIM)
+        printf("\n%c", caracter);
+    }
+
+    fclose(arq);
+
+
+    return 0;
+    }
