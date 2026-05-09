@@ -1,1 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+int main(){
+    FILE * Ar; //Inicialemnte eu puxo o tipo FILE e crio um ponteiro que sera a variavel que guardara o arquivo
+    char nome[] = "arquivo.txt"; //aqui eu crio o nome do arquivo
+    Ar = fopen(nome, "w"); //aqui eu boto o nome do arquivo em função da sua abertura
+    //e dps da variavel q vai ser guardada, fica entre aspas a função que queremos que o programa faça
+
+
+
+    if(Ar == NULL){ 
+        printf("\nPrograma não foi aberto corretamente!");
+        return -1;
+    }
+
+    printf("\nArquivo aberto corretamente!!");
+
+
+
+    return 0;
+    }
