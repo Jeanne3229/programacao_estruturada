@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+/*Questão 3 — Criando e fechando dois arquivos
+
+Crie um programa que:
+
+crie dois arquivos:
+"a.txt"
+"b.txt"
+ambos em modo escrita
+verifique se os dois abriram corretamente
+feche os dois arquivos*/
+
+    FILE *arquivo1;
+    char titulo1[] = "a.txt";
+    FILE *arquivo2;
+    char titulo2[] = "b.txt";
+
+    arquivo1 = fopen(titulo1, "w");
+    arquivo2 = fopen(titulo2, "w");
+
+    if(arquivo1 == NULL){
+            printf("\nArquivo 1 nao foi criado corretamente!");
+    }
+    else{
+        printf("\nArquivo 1 criado corretamente!");
+        fclose(arquivo1);
+    }
+
+
+     if(arquivo2 == NULL){
+            printf("\nArquivo 2 nao foi criado corretamente!");
+    }
+    else{
+        printf("\nArquivo 2 criado corretamente!");
+        fclose(arquivo2);
+    }
+
+
+
+
+
+    return 0;
+    }
