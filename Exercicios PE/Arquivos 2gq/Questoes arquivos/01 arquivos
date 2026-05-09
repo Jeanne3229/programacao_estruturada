@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    
+/*Questão 1 — Criando um arquivo
+
+Crie um programa que:
+
+crie um arquivo chamado "teste.txt"
+use modo escrita ("w")
+verifique se o arquivo abriu corretamente
+mostre:
+"Arquivo criado com sucesso"
+ou "Erro ao criar arquivo"
+feche o arquivo no final*/
+
+
+    FILE *Arq;
+    char titulo[] = "teste.txt";
+
+    Arq = fopen(titulo, "w");
+
+    if(Arq == NULL){
+        printf("\nArquivo nao foi criado corretamente!");
+        return -1;
+    }
+
+    printf("\nArquivo %s criado corretamente!", titulo);
+    fclose(Arq);
+    
+    //NAO ESQUECER DE FECHAR O ARQUIVO!!!!!!!!!!!!!!
+
+
+    return 0;
+    }
