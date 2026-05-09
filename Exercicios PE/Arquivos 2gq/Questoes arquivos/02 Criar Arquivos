@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    
+/*Questão 2 — Abrindo um arquivo para leitura
+
+Crie um programa que:
+
+tente abrir "dados.txt" em modo leitura ("r")
+verifique se o arquivo existe
+mostre:
+"Arquivo aberto"
+ou "Arquivo nao encontrado"
+feche o arquivo caso abra corretamente*/
+
+    FILE *arq;
+    char titulo[] = "dados.txt";
+    
+    arq = fopen(titulo, "r");
+    
+    if(arq == NULL){
+        printf("\nArquivo nao aberto corretamente!");
+        return -1;
+    }
+    
+    printf("\nArquivo aberto corretamente!");
+    fclose(arq);
+
+    return 0;
+    }
