@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*fgetc serve pra imprimir um caracter, e fputc serve pra copiar um caracter em algum lugar de destino*/
+
+int main(){
+    FILE *entrada;
+    char tituloE[] = "entrada.txt";
+
+    entrada = fopen(tituloE, "r");
+
+    if(entrada == NULL){
+        printf("\nArquivo de entrada nao pode ser criado corretamente!");
+        return -1;
+    }
+
+    printf("\nArquivo de entrada criado corretamente!");
+
+    FILE *saida;
+    char tituloS[] = "saida.txt";
+    saida = fopen(tituloS, "w");
+
+    if(saida == NULL){
+        printf("\nArquivo de saida nao pode ser criado corretamente");
+        return -1;
+    }
+
+    printf("\nAruivo de saida criado corretamente!");
+
+
+    printf("\nAREA DE COPIA!");
+
+    char c;
+
+    while((c = fgetc(entrada)) != EOF){
+        fputc(c, saida);
+    }
+
+    fclose(entrada);
+    fclose(saida);
+
+    return 0; }
