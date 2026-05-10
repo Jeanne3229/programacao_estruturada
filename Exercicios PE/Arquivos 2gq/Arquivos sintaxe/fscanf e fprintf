@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//todas as mudanças alteram no bloco de texto do documento 
+
+
+int main()
+{
+    FILE *arquivo;
+    char nome[] = "teste.txt";
+    arquivo = fopen(nome, "w");
+    int idade = 19;
+    if(arquivo == NULL){
+        printf("\nArquivo nao foi criado!");
+        return -1;
+    }
+
+    printf("\nArquivo criado corretamente!");
+
+    //fprintf(arquivo, "nao acredito que to escrevendo pelo codeblock");
+    //fprintf(arquivo, "Idade: %d", idade); //colocando variaveis
+    fscanf(arquivo, "%d", &idade); //tal qual o scanf normal
+    fprintf(arquivo, "idade: %d", idade); //tal qual o print normal
+    fclose(arquivo);
+
+
+
+
+
+    return 0;
+}
