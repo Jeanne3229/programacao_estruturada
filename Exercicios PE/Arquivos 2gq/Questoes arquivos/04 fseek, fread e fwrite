@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*1. Gerar Arquivo: Implemente uma função que crie o arquivo
+numeros.bin
+eescreva nele 10 números inteiros aleatórios (entre 1 e 100).
+numeros.bin
+2. Listar Números: Implemente uma função que leia e exiba todos os 10 números
+do arquivo
+3. Consultar Posição: Implemente uma função que peça ao usuário um índice (de
+0 a 9) e exiba o número inteiro armazenado nessa posição no arquivo. Use
+para ir diretamente à posição correta.
+fseek
+*/
+
+
+int main()
+{
+    FILE *arq;
+    char titulo[] = "numeros.bin";
+    int lnumero[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90 , 100};
+
+    arq = fopen(titulo, "wb");
+
+    if(!arq){
+        printf("\nO arquivo nao foi aberto corretamente!");
+        return -1;
+    }
+
+    printf("\nArquivo Aberto corretamente!");
+
+    for(int i = 0; i < 10; i++){
+        fwrite(&lnumero[i], sizeof(int), 1, arq); //endereco do dado, tamanho do tipo do dado, quantidade, ponteiro
+    }
+
+    fclose(arq);
+    arq = fopen(titulo, "rb");
+
+    if(!arq){
+        printf("\nO arquivo nao foi lido corretamente!");
+        return -2;
+    }
+
+    int numero;
+
+    for(int i = 0; i < 10; i++){
+        fread(&numero, sizeof(int), 1, arq);
+        printf("\n%d", numero);
+    }
+
+    if(ferror(arq)){
+        printf("\nNao foram lidos todos os valores!");
+        return -1;
+    }
+    else if(feof(arq)){
+        printf("\nFim encontrado pode continuar");
+    }
+
+    int indice;
+    printf("\nDigite um indice (0-9): ");
+    scanf("%d", &indice);
+
+    int status;
+    status = fseek(arq, indice * sizeof(int), SEEK_SET);
+
+    if(status == 0){
+        fread(&numero, sizeof(int), 1, arq);
+        printf("\nO numero da posicao %d: %d", indice, numero);
+    }
+    else{
+        printf("\nErro ao buscar posicao");
+    }
+
+
+    fclose(arq);
+
+    return 0;
+}
