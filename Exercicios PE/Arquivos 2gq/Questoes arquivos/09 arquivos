@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   FILE *arq;
+   char titulo[] = "numero.txt";
+   arq = fopen(titulo, "wt");
+
+   if(!arq){
+    printf("\nArquivo nao foi aberto corretamente!");
+    return -1;
+   }
+
+   printf("\nDigite o valor que voce deseja que seja inserido no arquivo: ");
+   int n;
+   scanf("%d", &n);
+   fprintf(arq, "%d", n);
+   int status;
+   status = fclose(arq);
+
+   if(status == EOF){
+    printf("\nArquivo n foi fechado corretamente!");
+    return -2;
+   }
+
+   printf("\nArquivo fechado corretamente!");
+
+   arq = fopen(titulo, "rt");
+
+   if(!arq){
+    printf("\nArquivo nao foi aberto corretamente!");
+    return -3;
+   }
+   printf("\nArquivo aberto corretamente!");
+   int nl;
+   fscanf(arq, "%d", &nl);
+   printf("\nNumero lido: %d", nl);
+
+   int status2 = fclose(arq);
+   if(status2 == EOF){
+    printf("\nArquivo nao foi fechado corretamente!");
+    return -4;
+   }
+    printf("\nArquivo fechado corretamente!");
+
+
+    return 0;
+}
