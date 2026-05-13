@@ -1,0 +1,32 @@
+ FILE *arq;
+    char nome[] = "texto.txt";
+
+    arq = fopen(nome, "wt");
+
+    if(!arq){
+        printf("\nArquivo nao foi aberto!");
+        return -1;
+    }
+
+    printf("\nArquivo aberto corretamente!");
+    int numero;
+
+    printf("\nDigite um numero: ");
+    scanf("%d", &numero);
+
+    int status;
+
+    status = fprintf(arq, "%d", numero); //guardo o numero no arquivo!
+
+    if(status < 0){
+        printf("\nErro na parte de guardar o arquivo!");
+        return -2;
+    }
+    int fechar;
+    fechar = fclose(arq);
+    if(fechar == EOF){
+        printf("\nArquivo nao foi fechado corretamente!");
+        return -1;
+    }
+
+    printf("\nArquivo fechado corretamente!");
