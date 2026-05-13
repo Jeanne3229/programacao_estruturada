@@ -1,0 +1,26 @@
+ FILE *arq;
+    char titulo[] = "fruta.txt";
+    char variavel[] = "banana";
+
+    //AREA ABERTURA DE ARQUIVO (PADRAO)
+
+    arq = fopen(titulo, "wt");
+
+    if(!arq){
+        printf("\nArquivo nao foi aberto!");
+        return -1;
+    }
+
+    printf("\nArquivo aberto corretamente!");
+
+    //AREA GRAVACAO DE VARIAVEL EM TEXTO NO ARQUIVO!
+    fprintf(arq, "%s", variavel);
+
+    fclose(arq);
+
+    if(!arq){
+        printf("\nArquivo nao foi fechado!");
+        return -2;
+    }
+
+    printf("\nArquivo fechado corretamente:)");
