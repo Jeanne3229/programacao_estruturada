@@ -1,0 +1,13 @@
+//DIFERENÇA ENTRE PRINTF, FPRINTF, FSCANF, SCANF
+
+//printf-> Mostra Algo na Tela
+//scanf-> Pega alto do teclado
+//fprintf-> escreve algo NO teclado, pega dados do programa e COLOCA NO arquivo. fprintf(arq, "%d", x);
+//fscanf-> LE ALGO do arquivo/ puxa alguma informação e coloca numa nova variavel. fscanf(arq, "%d", &x);
+
+//DIFERENÇA ENTRE FWRITE, FREAD, FEOF, FFLUSH
+
+//Fwrite-> Escreve em binario no arquivo. fwrite(&x, sizeof(int), 1, arq); (escreve tal qual fprintf, so q em binario)
+//Fread-> funciona como o fscanf so que em binario. fread(&x, sizeof(int), 1, arq);
+//Feof-> Verifica se chegou no fim do arquivo. EOF significa fim de arquivo. feof(arq), retorna 0 se nao acabou
+//fflush-> esvazia o buffer
