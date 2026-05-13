@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+//Questao: gravar o numero 100 em um arquivo binario.
+int main()
+{
+    FILE *arq;
+    char titulo[] = "dados.bin";
+    arq = fopen(titulo, "wb");
+    int n = 100;
+
+    if(!arq){
+        printf("\nO arquivo nao pode ser aberto corretamente!");
+        return -1;
+    }
+
+    int status = fwrite(&n, sizeof(int), 1, arq); //fwrite retorna quantos elementos conseguiu gravar
+
+
+    if(status < 1){
+        printf("\nErro ou gravacao incompleta!");
+        return -2;
+    }
+
+
+    fclose(arq);
+
+
+    return 0;
+}
