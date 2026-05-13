@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 5
+
+
+int main()
+{
+   FILE *arq;
+
+    arq = fopen("texto.txt", "wt");
+
+    if(!arq){
+        printf("\nArquivo nao criado!");
+        return -1;
+    }
+
+    fprintf(arq, "ABCDE");
+
+    fclose(arq);
+
+    arq = fopen("texto.txt", "rt");
+
+    if(!arq){
+        printf("\nArquivo nao aberto!");
+        return -1;
+    }
+
+    fseek(arq, 2, SEEK_SET);
+
+    char letra;
+    letra = fgetc(arq);
+
+    printf("\nLetra = %c", letra);
+
+    fclose(arq);
+    return 0;
+}
