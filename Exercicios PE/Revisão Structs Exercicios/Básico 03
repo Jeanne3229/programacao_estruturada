@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 100
+#define MAX 2
+/*Crie:
+struct Produto{
+   int codigo;
+   char descricao[100];
+   int quantidade;
+};
+Faça uma função:
+void AtualizarEstoque(struct Produto p[], int n);
+Ela deve:
+pedir código
+procurar produto
+pedir quantidade para somar ou diminuir
+atualizar estoque*/
+
+struct Produto{
+    int codigo;
+    char descricao[TAM];
+    int quantidade;
+};
+
+
+int qtdStr(char texto[]){
+    int i = 0;
+    while(texto[i] != '\0'){
+        i += 1;}
+    return i;}
+
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if(tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+
+void preencher(struct Produto *P, int tamanho){
+    for(int i = 0; i < tamanho; i++){
+        printf("\nQual o codigo do produto[%d]: ", i);
+        scanf("%d", &P[i].codigo);
+        getchar();
+        printf("\nQual a descricao do produto[%d]: ", i);
+        lerStr(P[i].descricao, TAM);
+        printf("\nDigite a quantidade do produto[%d]: ", i);
+        scanf("%d", &P[i].quantidade);
+        getchar();}
+}
+
+void exibirEstoque(struct Produto *P, int tamanho){
+    for(int i = 0; i < tamanho; i += 1){
+        printf("\n*PRODUTOS*\n");
+        printf("\nCODIGO: %d", P[i].codigo);
+        printf("\nDESCRICAO: %s", P[i].descricao);
+        printf("\nQUANTIDADE: %d", P[i].quantidade);
+        printf("\n-------------\n");
+    }
+}
+
+void AtualizarEstoque(struct Produto *P, int tamanho){
+    int escolha;
+    printf("\nDigite o codigo do produto que voce deseja alterar estoque: ");
+    scanf("%d", &escolha);
+    int encontrou = 0;
+    for(int i = 0; i < tamanho; i++){
+        if(escolha == P[i].codigo){
+            printf("\nDigite a quantidade que voce deseja adicionar ou remover do estoque: ");
+            int qtd;
+            scanf("%d", &qtd);
+            P[i].quantidade += qtd;
+            encontrou = 1;
+        }
+        }
+        if(encontrou == 0){
+            printf("\nO seu codigo nao foi encontrado nos nossos produtos!\n\n");
+        }
+    }
+
+
+
+
+
+
+int main(){
+    struct Produto meuVet[MAX];
+    preencher(meuVet, MAX);
+    exibirEstoque(meuVet, MAX);
+    AtualizarEstoque(meuVet, MAX);
+    exibirEstoque(meuVet, MAX);
+
+
+    return 0;
+}
