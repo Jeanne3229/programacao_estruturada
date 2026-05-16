@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define CARACTERES 100
+#define TAM 2
+//1a questão revisao structs, resolver no papel tambem!
+
+//nivel 1 - Básico (criar struct, ler e imprimir)
+
+/*Crie uma struct Aluno contendo:
+
+matrícula (int)
+nome (char[100])
+nota1 (float)
+nota2 (float)
+
+No main, faça:
+Ler dados de 5 alunos.
+Calcular média.
+Mostrar nome e média de cada aluno.*/
+
+struct Aluno{
+    int matricula;
+    char nome[CARACTERES];
+    double nota1;
+    double nota2;
+};
+
+int qtdStr(char texto[]){
+    int i = 0;
+    while (texto[i] != '\0'){ // literais caractereres devem ser utilizados com aspas simples
+        i += 1;
+    }
+    return i;
+}
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if (tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+
+void preencher(struct Aluno *A, int tamanho){ //aqui eu esqueci d ecolocar o [i]
+    for(int i = 0; i < tamanho; i++){
+        printf("\nDigite a matricula do aluno[%d]: ", i);
+        scanf("%d", &A[i].matricula);
+        getchar();
+        printf("\nQual o nome da pos[%d]: ", i);
+        lerStr(A[i].nome, CARACTERES);
+        printf("\nDigite a nota1 do aluno[%d]: ", i);
+        scanf("%lf", &A[i].nota1);
+        printf("\nDigite a nota2 do aluno[%d]: ", i);
+        scanf("%lf", &A[i].nota2);
+        getchar();
+    }
+    printf("\nFim da area preencher aluno\n");
+}
+
+void lerDados(struct Aluno *A, int tamanho){ //Aqui eu esqueci de botar o ponteiro
+    for(int i = 0; i < tamanho; i++){
+        printf("\n*AREA DO ALUNO DE MATRICULA %d*", A[i].matricula);
+        printf("\nNome do aluno: %s", A[i].nome);
+        printf("\nNota 1: %lf", A[i].nota1);
+        printf("\nNota 2: %lf\n", A[i].nota2);
+    }
+}
+
+void media(struct Aluno *A, int tamanho){
+    double mediaIndividual;
+    for(int i = 0; i < tamanho; i++){
+       mediaIndividual = (A[i].nota1 + A[i].nota2) / 2.00;
+       printf("\nNome: %s", A[i].nome);
+       printf("\nMedia do aluno: %lf", mediaIndividual);
+    }
+}
+
+
+
+
+
+
+int main()
+{
+    struct Aluno meuvet[TAM];
+    preencher(meuvet, TAM);
+    lerDados(meuvet, TAM);
+    media(meuvet, TAM);
+
+
+    return 0;
+}
