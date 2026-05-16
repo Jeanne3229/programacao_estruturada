@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 2
+/*Leia 4 produtos e mostre:
+
+Produto mais caro:
+Código:
+Descrição:
+Preço:*/
+
+struct Produto{
+    int codigo;
+    char descricao[100];
+    double preco;
+};
+
+int qtdStr(char texto[]){
+    int i = 0;
+    while(texto[i] != '\0'){
+        i += 1;
+    }
+    return i;
+}
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if(tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+
+
+
+
+
+
+void preencher(struct Produto*P, int tamanho){
+    for(int i = 0; i < tamanho; i++){
+        printf("\nDigite o codigo do produto[%d]: ", i);
+        scanf("%d", &P[i].codigo);
+        getchar();
+        printf("\nDigite a descricao do produto: ");
+        lerStr(P[i].descricao, 100);
+        printf("\nDigite o preco do produto: ");
+        scanf("%lf", &P[i].preco);
+        getchar();
+    }
+}
+
+void exibir(struct Produto *P, int tamanho){
+    for(int i = 0; i < tamanho; i++){
+        printf("\n*PRODUTOS*\n");
+        printf("\nCODIGO: %d", P[i].codigo);
+        printf("\nDESCRICAO: %s", P[i].descricao);
+        printf("\nPRECO: %lf\n", P[i].preco);
+    }
+}
+
+void MaisCaro(struct Produto *P, int tamanho){
+    int maisC = 0;
+    for(int i = 1; i < tamanho; i++){
+            if(P[i].preco > P[maisC].preco){
+                maisC = i;
+        }
+    }
+    printf("\nProduto mais caro:");
+    printf("\nCodigo: %d", P[maisC].codigo);
+    printf("\nDescricao: %s", P[maisC].descricao);
+    printf("\nPreco: %.2lf", P[maisC].preco);
+}
+
+
+
+int main()
+{
+    struct Produto meuvet[MAX];
+    preencher(meuvet, MAX);
+    exibir(meuvet, MAX);
+    MaisCaro(meuvet, MAX);
+
+
+    return 0;
+}
