@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define CARACTERES 200
+#define TAM 2
+struct Produto{
+	int codigo;
+	char descricao[CARACTERES];
+	double v_unitario;
+	int qtd_estoque;
+};
+
+
+
+//funcoes auxliares
+int qtdStr(char texto[]){
+    int i = 0;
+    while(texto[i] != '\0'){
+        i += 1;
+    }
+    return i;
+}
+
+void lerStr(char str[], int max){
+    fgets(str, max, stdin);
+    int tam = qtdStr(str);
+    if(tam > 0 && str[tam - 1] == '\n'){
+        str[tam - 1] = '\0';
+    }
+}
+
+
+//funcao letra A
+void preencher(struct Produto *P, int i){
+	printf("\n*AREA DE CADASTRO DO PRODUTO*\n");
+	printf("\nDigite o codigo do produto: ");
+	scanf("%d", &P[i].codigo);
+	printf("\nDigite a descricao do produto: ");
+	lerStr(P[i].descricao, CARACTERES);
+	lerStr(P[i].descricao, CARACTERES);
+	printf("\nDigite o valor Unitario do produto: ");
+	scanf("%lf", &P[i].v_unitario);
+	printf("\nDigite a quantidade no estoque: ");
+	scanf("%d", &P[i].qtd_estoque);   }		
+	
+//funcao Letra G
+
+void Exibir(struct Produto *P, int tamanho){
+	printf("\n*AREA EXIBIR CODIGO E A DESCRICAO DE TODOS OS PRODUTOS*\n");
+	for(int i = 0; i < tamanho; i++){
+		printf("\nCODIGO: %d", P[i].codigo);
+		printf("\nDESCRICAO: %s", P[i].descricao);
+	}
+	printf("\n*FIM DA AREA DE EXIBICAO DE CODIGO E DESCRICAO!*\n");
+}
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+int main() {
+	struct Produto meuVet[TAM];
+	int entrada = 1;
+	
+	do{
+		printf("\n*MENU*\n");
+		printf("1 - Cadastrar Novo Produto");
+		printf("\n7 - Exibir codigo e descricao de todos os produtos\n");
+		scanf("%d", &entrada);
+		if(entrada == 1){
+			preencher(meuVet, i);
+			i += 1;
+			
+		}
+	}while(entrada != 0);
+	
+	
+	
+	
+	
+	
+	
+	return 0;
+}
