@@ -53,39 +53,29 @@ void Exibir(struct Produto *P, int tamanho){
 	printf("\n*FIM DA AREA DE EXIBICAO DE CODIGO E DESCRICAO!*\n");
 }
 
-
-
-
-	
-	
-	
-	
-
-
-
-
-
 int main() {
 	struct Produto meuVet[TAM];
 	int entrada = 1;
-	
+	int i = 0;
+
 	do{
+        printf("\n----------");
 		printf("\n*MENU*\n");
 		printf("1 - Cadastrar Novo Produto");
 		printf("\n7 - Exibir codigo e descricao de todos os produtos\n");
+        printf("\nDigite a sua escolha do menu: ");
 		scanf("%d", &entrada);
 		if(entrada == 1){
 			preencher(meuVet, i);
 			i += 1;
-			
 		}
+        else if(entrada == 7){
+            Exibir(meuVet, i);
+        }
+        else if(entrada == 0){
+            printf("\nPROGRAMA ENCERRADO!");
+        }
 	}while(entrada != 0);
-	
-	
-	
-	
-	
-	
 	
 	return 0;
 }
