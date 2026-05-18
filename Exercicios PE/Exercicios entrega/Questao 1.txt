@@ -1,0 +1,78 @@
+acre
+1200
+45
+alagoas
+1800
+70
+amapa
+900
+30
+amazonas
+2500
+120
+bahia
+5000
+210
+ceara
+3200
+140
+distrito federal
+2200
+85
+espirito santo
+2100
+75
+goias
+3400
+160
+maranhao
+2800
+110
+mato grosso
+2600
+95
+mato grosso do sul
+2300
+80
+minas gerais
+6000
+250
+para
+3100
+130
+paraiba
+200
+50
+parana
+4200
+170
+pernambuco
+3500
+150
+piaui
+1700
+60
+rio de janeiro
+4800
+240
+rio grande do norte
+1900
+65
+rio grande do sul
+4300
+180
+rondonia
+1400
+55
+roraima
+800
+25
+santa catarina
+3900
+145
+sao paulo
+8000
+320
+sergipe
+1600
+58
