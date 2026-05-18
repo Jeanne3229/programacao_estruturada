@@ -1,0 +1,51 @@
+{RESULTADOS ESPERADOS QUESTAO 1 SITE}
+
+Estado com maior quantidade de acidentes:
+sao paulo (320 acidentes)
+
+Estado com menor quantidade de acidentes:
+roraima (25 acidentes)
+
+Percentual por estado:
+acre: 3.75%
+alagoas: 3.89%
+amapa: 3.33%
+amazonas: 4.80%
+bahia: 4.20%
+ceara: 4.38%
+distrito federal: 3.86%
+espirito santo: 3.57%
+goias: 4.71%
+maranhao: 3.93%
+mato grosso: 3.65%
+mato grosso do sul: 3.48%
+minas gerais: 4.17%
+para: 4.19%
+paraiba: 25.00%
+parana: 4.05%
+pernambuco: 4.29%
+piaui: 3.53%
+rio de janeiro: 5.00%
+rio grande do norte: 3.42%
+rio grande do sul: 4.19%
+rondonia: 3.93%
+roraima: 3.12%
+santa catarina: 3.72%
+sao paulo: 4.00%
+sergipe: 3.62%
+
+Media de acidentes do pais: 119.92
+
+Estados acima da media:
+- amazonas
+- bahia
+- ceara
+- goias
+- minas gerais
+- para
+- parana
+- pernambuco
+- rio de janeiro
+- rio grande do sul
+- santa catarina
+- sao paulo
