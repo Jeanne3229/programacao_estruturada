@@ -66,8 +66,13 @@ int main() {
         printf("\nDigite a sua escolha do menu: ");
 		scanf("%d", &entrada);
 		if(entrada == 1){
-			preencher(meuVet, i);
-			i += 1;
+            if (i >= TAM)
+            {
+                printf("\nLIMITE ATINGIDO!");
+                continue;
+            }
+            preencher(meuVet, i);
+            i += 1;
 		}
         else if(entrada == 7){
             Exibir(meuVet, i);
