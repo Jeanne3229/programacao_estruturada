@@ -1,7 +1,8 @@
-#include <stdio.h>
+##include <stdio.h>
 #include <stdlib.h>
 #define CARACTERES 200
 #define TAM 2
+
 struct Produto{
 	int codigo;
 	char descricao[CARACTERES];
@@ -53,6 +54,35 @@ void Exibir(struct Produto *P, int tamanho){
 	printf("\n*FIM DA AREA DE EXIBICAO DE CODIGO E DESCRICAO!*\n");
 }
 
+
+int buscaSequencial(struct Produto vp[], int n, int x) { //sendo n o tamanho, x o valor que estamos procurando
+    for (int i = 0; i < n; i += 1) {
+        if (vp[i].codigo == x) {
+            return i; //achou retorna o indice 
+        }
+    }
+    return -1; //se nao achou retorna -1
+}
+
+void AlterarVu(struct Produto produto[], int tamanho){
+	printf("=====AREA ALTERAR VALOR UNITARIO PELO CODIGO====");
+	printf("\nDigite o codigo do produto que voce deseja alterar: ");
+	int codigo;
+	scanf("%d", &codigo);
+	int pos = buscaSequencial(produto, tamanho, codigo);
+	
+	if(pos >= 0 ){
+		printf("\nQual o valor que voce deseja nesse produto?: ");
+		double preco;
+		scanf("%lf", &produto[pos].v_unitario);
+	}
+	printf("\nO codigo nao existe no sistema!");
+}
+
+
+
+
+
 int main() {
 	struct Produto meuVet[TAM];
 	int entrada = 1;
@@ -62,9 +92,11 @@ int main() {
         printf("\n----------");
 		printf("\n*MENU*\n");
 		printf("1 - Cadastrar Novo Produto");
+		printf("\n2 - Alterar Valor unitario");
 		printf("\n7 - Exibir codigo e descricao de todos os produtos\n");
         printf("\nDigite a sua escolha do menu: ");
 		scanf("%d", &entrada);
+		
 		if(entrada == 1){
             if (i >= TAM)
             {
@@ -77,10 +109,16 @@ int main() {
         else if(entrada == 7){
             Exibir(meuVet, i);
         }
+        else if(entrada == 2){
+        	AlterarVu(meuVet, TAM);
+		}
         else if(entrada == 0){
             printf("\nPROGRAMA ENCERRADO!");
         }
 	}while(entrada != 0);
+	
+	
+	
 	
 	return 0;
 }
