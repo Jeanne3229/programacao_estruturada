@@ -69,7 +69,7 @@ void imprimirProduto(struct Produto vp[], int qtdProduto, struct Categoria vc[],
         printf("\nTITULO: %s", vp[i].titulo);
         printf("\nDESCRICAO: %s", vp[i].descricao);
         j = busca(vc, vp[i].categoria, qtdcategoria);
-        printf("\nlf", vp[i].preco / 100.00);
+        printf("\n%lf", vp[i].preco / 100.00);
         if(j >= 0){
         printf("\n%s", vc[j].nome);
         }
@@ -85,7 +85,7 @@ void selectionSort(struct Produto v[], int qtd){
             if(strcmp(v[j].descricao, v[menor].descricao) < 0){
                 menor = j;
         }
-    } 
+    }
     aux = v[i];
     v[i] = v[menor];
     v[menor] = aux;
@@ -115,4 +115,96 @@ void buscaBinaria(struct Produto v[], int qtd, char *x){
         }
     }
     printf("Nao encontrado!\n");
+}
+
+
+int main(){
+    // Declaração dos vetores e contadores de quantidade
+    struct Categoria categorias[TAM];
+    struct Produto produtos[TAM];
+    int qtdCategorias = 0;
+    int qtdProdutos = 0;
+    int opcao;
+    char termoBusca[256];
+
+    do {
+        // Um pequeno toque para o título do seu sistema de estoque
+        printf("\n====SISTEMA DE ESTOQUE====\n");
+        printf("1. Cadastrar Categoria\n");
+        printf("2. Imprimir Categorias\n");
+        printf("3. Cadastrar Produto (Teste)\n");
+        printf("4. Imprimir Produtos\n");
+        printf("5. Ordenar Produtos por Descricao (Selection Sort)\n");
+        printf("6. Buscar Produto por Descricao (Busca Binaria)\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        getchar();
+        switch(opcao) {
+            case 1:
+                CadastrarCategoria(categorias, &qtdCategorias);
+                break;
+            case 2:
+                if (qtdCategorias == 0) {
+                    printf("\nNenhuma categoria cadastrada ainda.\n");
+                } else {
+                    imprimirCategoria(categorias, qtdCategorias);
+                }
+                break;
+            case 3:
+                if(qtdProdutos >= TAM) {
+                    printf("\nEstoque de produtos cheio!\n");
+                    break;
+                }
+                printf("\n---CADASTRAR PRODUTO---\n");
+                printf("Codigo do produto: ");
+                scanf("%d", &produtos[qtdProdutos].codigo);
+                getchar();
+                printf("Titulo do produto: ");
+                lerStr(produtos[qtdProdutos].titulo, 100);
+                printf("Descricao do produto: ");
+                lerStr(produtos[qtdProdutos].descricao, 256);
+                printf("Codigo da Categoria a qual ele pertence: ");
+                scanf("%d", &produtos[qtdProdutos].categoria);
+                printf("Preco: ");
+                scanf("%d", &produtos[qtdProdutos].preco);
+                qtdProdutos++;
+                printf("\nProduto cadastrado com sucesso!\n");
+                break;
+
+            case 4:
+                if (qtdProdutos == 0) {
+                    printf("\nNenhum produto cadastrado ainda!\n");
+                } else {
+                    imprimirProduto(produtos, qtdProdutos, categorias, qtdCategorias);
+                }
+                break;
+
+            case 5:
+                if (qtdProdutos > 0) {
+                    selectionSort(produtos, qtdProdutos);
+                    printf("\nProdutos ordenados por descricao com sucesso!\n");
+                } else {
+                    printf("\nCadastre produtos antes de ordenar\n");
+                }
+                break;
+
+            case 6:
+                if (qtdProdutos == 0) {
+                    printf("\nNenhum produto cadastrado para buscar\n");
+                    break;
+                }
+                printf("\nDigite a descricao exata do produto que deseja buscar: ");
+                lerStr(termoBusca, 256);
+                buscaBinaria(produtos, qtdProdutos, termoBusca);
+                break;
+            case 0:
+                printf("\nEncerrando o sistema\n");
+                break;
+            default:
+                printf("\nOpcao invalida! Tente novamente.\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
 }
