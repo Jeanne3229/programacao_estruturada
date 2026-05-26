@@ -1,0 +1,30 @@
+1
+10
+eletrica e iluminacao
+1
+20
+utilidades Domesticas
+3
+101
+quadro de Distribuicao
+quadro de distribuicao qgtbt de embutir
+10
+35000
+3
+102
+kit Cozinha
+kit cozinha em aco inox
+20
+8550
+3
+103
+disjuntor 20A
+disjuntor termomagnetico bipolar
+10
+2500
+4
+5
+4
+6
+kit cozinha em aco inox
+0
