@@ -119,7 +119,7 @@ void buscaBinaria(struct Produto v[], int qtd, char *x){
 
 
 int main(){
-    // Declaração dos vetores e contadores de quantidade
+    //Declaração dos vetores e contadores de quantidade de cada
     struct Categoria categorias[TAM];
     struct Produto produtos[TAM];
     int qtdCategorias = 0;
@@ -128,7 +128,6 @@ int main(){
     char termoBusca[256];
 
     do {
-        // Um pequeno toque para o título do seu sistema de estoque
         printf("\n====SISTEMA DE ESTOQUE====\n");
         printf("1. Cadastrar Categoria\n");
         printf("2. Imprimir Categorias\n");
